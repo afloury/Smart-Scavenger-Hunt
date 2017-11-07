@@ -27,6 +27,6 @@ Récupérer la mission en cours.
 ## Erreurs
 
 ### HTTP 403 Forbidden
-Erreur d'authentification via le tocken QR-Code.
+Erreur d'authentification via le token d'équipe.
 
 ***
