@@ -1,4 +1,4 @@
-# Pictures
+# Photos
 
     POST /picture
 
