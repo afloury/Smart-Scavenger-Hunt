@@ -3,7 +3,7 @@
     POST team
 
 ## Description
-Create your team for the Scavenging Hunt
+Create your team for the Scavenger Hunt
 
 ***
 
