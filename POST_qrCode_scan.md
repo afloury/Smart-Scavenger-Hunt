@@ -1,4 +1,4 @@
-# Photo Resources
+# QR Code Scan
 
     POST qrCode/scan
 
@@ -15,7 +15,7 @@ False
 ## Parameters
 Essential information:
 
-- **data** — Title of the photo
+- **data** — The QR Code Data
 
 ***
 
