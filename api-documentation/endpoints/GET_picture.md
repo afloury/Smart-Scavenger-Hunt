@@ -1,9 +1,9 @@
-# Pictures
+# Photos
 
     GET /picture
 
 ## Description
-Liste des photo déposées jusqu') présent.
+Liste des photo déposées jusqu')-à présent.
 
 ***
 
