@@ -18,14 +18,6 @@ Abandon de la mission en cours.
 ***
 
 ## Erreurs
-- **403 Forbidden** — Erreur d'authentification via le tocken QR-Code.
 
-***
-
-## Exemple
-**Request**
-
-    DELETE /mission
-
-**Return**
-**HTTP 204 NO CONTENT**
+### HTTP 403 Forbidden
+Erreur d'authentification via le tocken QR-Code.
