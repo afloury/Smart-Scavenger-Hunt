@@ -1,4 +1,4 @@
-# Mission
+# Missions
 
     DELETE /mission
 
@@ -9,7 +9,7 @@ Abandon de la mission en cours.
 
 
 ## Todo: authentication
-**Token QR-Code ?**
+**Token d'équipe**
 
 ***
 
