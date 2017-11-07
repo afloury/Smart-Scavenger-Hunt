@@ -7,6 +7,11 @@ Lister les contestations de reconnaissance visuelle.
 
 ***
 
+## Todo: authentication
+**Token QR-Code ?**
+
+***
+
 ## Format des données retournées
 
 ### HTTP 201 CREATED
@@ -16,6 +21,6 @@ Lister les contestations de reconnaissance visuelle.
 ## Erreurs
 
 ### HTTP 403 Forbidden
-Erreur d'authentification via le tocken d'équipe.
+Erreur d'authentification via le token d'équipe.
 
 ***
