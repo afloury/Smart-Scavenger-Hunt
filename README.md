@@ -11,3 +11,7 @@ IOT Project based on the principle of Scavenger Hunt
 - **[Location Restriction](https://github.com/afloury/Smart-Scavenger-Hunt-Router)**
 - **[Supervision](https://github.com/afloury/Smart-Scavenger-Hunt-Router)**
 - **[Orchestrator](https://github.com/afloury/Smart-Scavenger-Hunt-Router)**
+
+
+[## History (french)](https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/HISTORY.md)
+
