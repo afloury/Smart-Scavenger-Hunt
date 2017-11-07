@@ -8,7 +8,7 @@ Lister les contestations de reconnaissance visuelle.
 ***
 
 ## Todo: authentication
-**Token QR-Code ?**
+**Token d'équipe**
 
 ***
 
