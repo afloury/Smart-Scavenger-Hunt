@@ -1,4 +1,4 @@
-# Missions
+# Contestations
 
     POST /picture/{id_picture}/issue
 
