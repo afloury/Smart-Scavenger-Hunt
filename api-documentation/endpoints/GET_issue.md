@@ -3,12 +3,7 @@
     GET /issue
 
 ## Description
-Liste des contestations de reconnaissance visuelle.
-
-***
-
-## Todo: authentication
-**Token QR-Code ?**
+Lister les contestations de reconnaissance visuelle.
 
 ***
 
@@ -21,6 +16,6 @@ Liste des contestations de reconnaissance visuelle.
 ## Erreurs
 
 ### HTTP 403 Forbidden
-Erreur d'authentification via le tocken QR-Code.
+Erreur d'authentification via le tocken d'équipe.
 
 ***
