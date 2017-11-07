@@ -19,8 +19,8 @@
   - Analyse des différentes routes à réaliser
   - Réflexion sur les cas particuliers (cas réel)
   - Réflexion sur l'aspect sécurité du jeu (éviter la triche)
-- Documentation des routes pour le Router
-- Documentation des routes pour le jeu (container)
+- [Documentation des routes pour le Router](https://github.com/afloury/Smart-Scavenger-Hunt-Router)
+- [Documentation des routes pour le jeu (container)](https://github.com/afloury/Smart-Scavenger-Hunt-Game)
 - Mise en place des différents dépôts Git
 - Planification des développements
   - planification des tâches à réaliser
