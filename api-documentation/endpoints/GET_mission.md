@@ -8,7 +8,7 @@ Récupérer la mission en cours.
 ***
 
 ## Todo: authentication
-**Token QR-Code ?**
+**Token d'équipe**
 
 ***
 
