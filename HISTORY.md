@@ -1,5 +1,5 @@
 
-## Jour 1 (06/11/17)
+## Jour 1 (2017-11-06)
 
 - Prise de connaissance du sujet
 - Réflexion sur la mise en place de l'architecture
@@ -11,9 +11,9 @@
     - Études et formations sur les outils inconnus
 - [Ébauche de user stories](../blob/master/doc/2017-11-06/USER_STORIES.MD)
 
+________
 
-
-## Jour 2 (07/11/17)
+## Jour 2 (2017-11-07)
 
 - Établissement des routes nécessaires aux différentes API
   - Analyse des différentes routes à réaliser
@@ -25,3 +25,15 @@
 - Planification des développements
   - planification des tâches à réaliser
   - gestion du projet dans Trello
+
+________
+
+## Jour 3 (2017-11-08)
+
+- Ajout preview dans scan qr-code appli iOS
+- Récupération du major/minor dans iBeacon iOS
+- Hébergement d'un iBeacon sur Raspberry Pi
+- Transmission d'un major/minor arbitraire depuis iBeacon sur Raspberry Pi
+- Inscription et tests de communication Google Cloud Vision API
+- Code de base pour le routeur
+- Transfert dépôts séparés vers branches
