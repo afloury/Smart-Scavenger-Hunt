@@ -31,6 +31,8 @@ ________
 ## Jour 3 (2017-11-08)
 
 - Ajout preview dans scan qr-code appli iOS
+- Menu de navigation (tab bar iOS)
+- Écran de prise de photo app iOS
 - Hébergement d'un iBeacon sur Raspberry Pi
 - Transmission d'un major/minor arbitraire depuis iBeacon sur Raspberry Pi
 - Récupération du major/minor dans iBeacon iOS
