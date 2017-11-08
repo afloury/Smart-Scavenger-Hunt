@@ -1,3 +1,4 @@
 Flask
 Flask-Cors
 requests
+google-cloud-vision==0.28.0
