@@ -31,9 +31,9 @@ ________
 ## Jour 3 (2017-11-08)
 
 - Ajout preview dans scan qr-code appli iOS
-- Récupération du major/minor dans iBeacon iOS
 - Hébergement d'un iBeacon sur Raspberry Pi
 - Transmission d'un major/minor arbitraire depuis iBeacon sur Raspberry Pi
+- Récupération du major/minor dans iBeacon iOS
 - Inscription et tests de communication Google Cloud Vision API
 - Code de base pour le routeur
 - Transfert dépôts séparés vers branches
