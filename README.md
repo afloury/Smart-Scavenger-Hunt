@@ -4,15 +4,14 @@ IOT Project based on the principle of Scavenger Hunt
 ### Description
 
 
-## Sources
+## Branches
 
-- **[Router](https://github.com/afloury/Smart-Scavenger-Hunt-Router)**
-- **[Game (container)](https://github.com/afloury/Smart-Scavenger-Hunt-Game)**
-- **[Location Restriction](https://github.com/afloury/Smart-Scavenger-Hunt-Location-Restriction)**
-- **[Supervision](https://github.com/afloury/Smart-Scavenger-Hunt-Supervision)**
-- **[Orchestrator](Smart-Scavenger-Hunt-Orchestrator)**
-- **[iOS](Smart-Scavenger-Hunt-iOS)**
+- **[Router](https://github.com/afloury/Smart-Scavenger-Hunt/tree/router)**
+- **[Game (container)](https://github.com/afloury/Smart-Scavenger-Hunt/tree/game)**
+- **[Location Restriction](https://github.com/afloury/Smart-Scavenger-Hunt/tree/location-restriction)**
+- **[Supervision](https://github.com/afloury/Smart-Scavenger-Hunt/tree/supervision)**
+- **[Orchestrator](https://github.com/afloury/Smart-Scavenger-Hunt/tree/orchestrator)**
+- **[iOS](https://github.com/afloury/Smart-Scavenger-Hunt/tree/ios)**
 
 
 ## [History (fr)](https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/HISTORY.md)
-
