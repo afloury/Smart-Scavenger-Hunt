@@ -19,6 +19,7 @@ def run_quickstart():
     # [START vision_quickstart]
     import io
     import os
+    import json
 
     # Imports the Google Cloud client library
     # [START migration_import]
@@ -49,6 +50,8 @@ def run_quickstart():
     print('Labels:')
     for label in labels:
         print(label.description)
+        print(label.score)
+        print('')
     # [END vision_quickstart]
 
 

@@ -5,8 +5,14 @@ import os
 import random
 import uuid
 import requests
+from google.cloud import vision
+from google.cloud.vision import types
 
 
+# Initialisation Google API Vision
+client = vision.ImageAnnotatorClient()
+
+# Initialisation Flask
 app = Flask(__name__)
 CORS(app)
 
@@ -14,6 +20,23 @@ CORS(app)
 @app.route('/hello/', methods=['GET'])
 def list_all_nodes():
     return 'salut'
+
+
+@app.route('/vision/', methods=['POST'])
+def google_vision():
+    raw_data = request.stream.read()
+    image = types.Image(content=raw_data)
+
+    response = client.label_detection(image=image)
+    labels = response.label_annotations
+
+    print('Labels:')
+    for label in labels:
+        print(label.description)
+        print(label.score)
+        print('')
+
+    return 'ok'
 
 
 if __name__ == "__main__":
