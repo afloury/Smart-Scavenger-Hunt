@@ -47,5 +47,10 @@
 	<string>This app will use camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>You can select photos to attach to reports.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
