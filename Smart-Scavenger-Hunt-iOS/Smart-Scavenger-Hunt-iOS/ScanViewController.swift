@@ -45,27 +45,54 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         
-        let uuid = UUID(uuidString: "483892bf-2d2a-4cd6-8fd9-311779cb5153")!
-        let region = CLBeaconRegion(proximityUUID: uuid, identifier: "Totorama")
+        let uuidW = UUID(uuidString: self.uuidWithdrawal)!
+        let uuidD = UUID(uuidString: self.uuidDelivery)!
+        let regions = [CLBeaconRegion(proximityUUID: uuidD, identifier: "depot"),
+                       CLBeaconRegion(proximityUUID: uuidW, identifier: "inscription_retrait")]
         
-        region.notifyOnExit = true
-        region.notifyOnEntry = true
-        region.notifyEntryStateOnDisplay = true
+        regions.forEach { region in
+            region.notifyOnExit = true
+            region.notifyOnEntry = true
+            region.notifyEntryStateOnDisplay = true
+            locationManager.startRangingBeacons(in: region)
+        }
         
-        locationManager.startRangingBeacons(in: region)
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        if !beacons.isEmpty {
-            isEmpty = false
-            print(beacons)
-            dump(beacons)
-            messageLabel.text = String(format:"%04x", beacons[0].major as! UInt32) + String(format:"%04x", beacons[0].minor as! UInt32)
-        } else if isEmpty == false{
-            isEmpty = true
-            print("empty")
-            messageLabel.text = "Identifiant"
-        }
+        print("")
+        beacons.forEach({ (beacon) in
+            if ![1, 2, 3].contains(beacon.proximity.rawValue) { return }
+            
+            var message = ""
+            let token_equipe_present = keychain.get("token")
+            
+            switch (token_equipe_present, region.identifier) {
+            case(nil, "depot"):
+                print("Informer l'utilisateur qu'il doit s'inscrire")
+                message += "svp inscrire?"
+                break
+            case(nil, "inscription_retrait"):
+                print("Déclencher code pour s'inscrire")
+                message += "inscription"
+                break
+            case(_, "depot"):
+                print("Déclencher code pour déposer photo")
+                message += "depot"
+                break
+            case(_, "inscription_retrait"):
+                print("Déclencher code pour retirer mission")
+                message += "retrait"
+                break
+            case (_, _):
+                // wtf
+                break
+            }
+            
+            message += " => " + String(format:"%04x", beacon.major as! UInt32) + String(format:"%04x", beacon.minor as! UInt32)
+            messageLabel.text = message
+        })
     }
     
     func prepareCaptureSession() {
