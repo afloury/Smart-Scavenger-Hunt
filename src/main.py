@@ -12,9 +12,9 @@ CORS(app)
 
 
 @app.route('/hello/', methods=['GET'])
-def list_all_nodes():
+def hello():
     return 'salut'
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
