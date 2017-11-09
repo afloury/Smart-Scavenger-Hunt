@@ -35,8 +35,6 @@ for key, value in uuids.items():
 
 print(uuids)
 
-uuids['inscription_retrait'] = '483892bf-2d2a-4cd6-8fd9-311779cb5153'
-
 
 @app.route('/is_valid/<role>/<token>', methods=['GET'])
 def is_token_valid(role, token):
