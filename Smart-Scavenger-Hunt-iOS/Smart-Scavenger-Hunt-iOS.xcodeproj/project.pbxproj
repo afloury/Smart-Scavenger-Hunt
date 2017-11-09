@@ -12,6 +12,7 @@
 		3F51B8B51FB2EF7C00AF2DD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F51B8B31FB2EF7C00AF2DD6 /* Main.storyboard */; };
 		3F51B8B71FB2EF7C00AF2DD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F51B8B61FB2EF7C00AF2DD6 /* Assets.xcassets */; };
 		3F51B8BA1FB2EF7C00AF2DD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F51B8B81FB2EF7C00AF2DD6 /* LaunchScreen.storyboard */; };
+		3FB7771B1FB5077A00C34BED /* RegisterTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB7771A1FB5077A00C34BED /* RegisterTeamViewController.swift */; };
 		3FFB10E01FB3454900EC420C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB10DF1FB3454900EC420C /* HomeViewController.swift */; };
 		3FFB10E21FB3506500EC420C /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB10E11FB3506500EC420C /* PhotoViewController.swift */; };
 		EA1CCEC159624109B14DE961 /* Pods_Smart_Scavenger_Hunt_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EE3A9B9E24311E58DF2666C /* Pods_Smart_Scavenger_Hunt_iOS.framework */; };
@@ -26,6 +27,7 @@
 		3F51B8B91FB2EF7C00AF2DD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F51B8BB1FB2EF7C00AF2DD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FB777191FB48E5300C34BED /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FB7771A1FB5077A00C34BED /* RegisterTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTeamViewController.swift; sourceTree = "<group>"; };
 		3FFB10DF1FB3454900EC420C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3FFB10E11FB3506500EC420C /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		4EE3A9B9E24311E58DF2666C /* Pods_Smart_Scavenger_Hunt_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smart_Scavenger_Hunt_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +76,7 @@
 				3F51B8BB1FB2EF7C00AF2DD6 /* Info.plist */,
 				3FFB10DF1FB3454900EC420C /* HomeViewController.swift */,
 				3FFB10E11FB3506500EC420C /* PhotoViewController.swift */,
+				3FB7771A1FB5077A00C34BED /* RegisterTeamViewController.swift */,
 			);
 			path = "Smart-Scavenger-Hunt-iOS";
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB7771B1FB5077A00C34BED /* RegisterTeamViewController.swift in Sources */,
 				3F51B8B21FB2EF7C00AF2DD6 /* ScanViewController.swift in Sources */,
 				3FFB10E21FB3506500EC420C /* PhotoViewController.swift in Sources */,
 				3F51B8B01FB2EF7C00AF2DD6 /* AppDelegate.swift in Sources */,

@@ -14,6 +14,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     let locationManager = CLLocationManager()
     var urlBaseLocationRestriction = "http://172.30.1.208:5002/"
     var urlBaseRouter = "http://172.30.1.208:5001/"
+    var registerViewController : RegisterTeamViewController!
 
     var uuidWithdrawal = ""
     var uuidDelivery = ""
@@ -24,6 +25,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         
         prepareCaptureSession()
         loadUUID()
+        displayRegisterView()
     }
     
     func loadUUID() {
@@ -56,22 +58,45 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
             region.notifyEntryStateOnDisplay = true
             locationManager.startRangingBeacons(in: region)
         }
-        
-        
+    }
+    
+    func displayRegisterView() {
+        registerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registerViewController") as! RegisterTeamViewController
+
+        let card = registerViewController.view!
+        let screenSize = UIScreen.main.bounds
+        let screenHeight = screenSize.height
+        card.frame = CGRect(x: 16, y: screenHeight * 0.20, width: view.bounds.width - 32, height: screenHeight * 0.60)
+        let maskPath = UIBezierPath(roundedRect: card.bounds, cornerRadius: 20)
+        let maskShape = CAShapeLayer()
+        maskShape.path = maskPath.cgPath
+        card.layer.mask = maskShape
+        self.view.addSubview(card)
+    }
+    
+    func displayAlert(message: String, actionTitle: String = "Ok") {
+        let alertController = UIAlertController.init(title: nil, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction.init(title: actionTitle, style: .default, handler: {(alert: UIAlertAction!) in
+        })
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         print("")
         beacons.forEach({ (beacon) in
             if ![1, 2, 3].contains(beacon.proximity.rawValue) { return }
-            
             var message = ""
             let token_equipe_present = keychain.get("token")
-            
+            var idRegion = ""
             switch (token_equipe_present, region.identifier) {
             case(nil, "depot"):
                 print("Informer l'utilisateur qu'il doit s'inscrire")
-                message += "svp inscrire?"
+                if idRegion == region.identifier {
+                    idRegion = region.identifier
+                    message += "you have to go to the registration point first"
+                    displayAlert(message: message)
+                }
                 break
             case(nil, "inscription_retrait"):
                 print("Déclencher code pour s'inscrire")
@@ -175,7 +200,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         captureSession.commitConfiguration()
     }
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
     }
 }
