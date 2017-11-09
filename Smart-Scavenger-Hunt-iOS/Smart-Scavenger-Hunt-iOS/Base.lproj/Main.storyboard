@@ -62,6 +62,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
                                         <state key="normal" title="Take Photo"/>
                                         <connections>
+                                            <action selector="takePhoto:" destination="SU8-dp-bCn" eventType="touchUpInside" id="7ku-Ws-A5U"/>
                                             <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PUY-jR-KaW"/>
                                         </connections>
                                     </button>
@@ -69,16 +70,14 @@
                                         <rect key="frame" x="175.5" y="0.0" width="167.5" height="30"/>
                                         <state key="normal" title="Send"/>
                                         <connections>
+                                            <action selector="sendImage:" destination="SU8-dp-bCn" eventType="touchUpInside" id="4Ql-uJ-NkS"/>
                                             <action selector="sendImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vol-vg-rUa"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y94-0F-rFS">
-                                <rect key="frame" x="16" y="339" width="343" height="221"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="221" id="B5v-UL-YfZ"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="20" width="343" height="540"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -88,6 +87,7 @@
                             <constraint firstItem="4BH-nX-xQa" firstAttribute="leading" secondItem="7Os-pr-d7E" secondAttribute="leading" constant="16" id="JP4-GS-qu7"/>
                             <constraint firstItem="4BH-nX-xQa" firstAttribute="top" secondItem="y94-0F-rFS" secondAttribute="bottom" constant="8" id="PBb-2l-4kA"/>
                             <constraint firstItem="y94-0F-rFS" firstAttribute="centerX" secondItem="7Os-pr-d7E" secondAttribute="centerX" id="cwH-Ti-LUd"/>
+                            <constraint firstItem="y94-0F-rFS" firstAttribute="top" secondItem="7Os-pr-d7E" secondAttribute="top" id="hLe-Rn-WmK"/>
                             <constraint firstItem="lir-j3-QI0" firstAttribute="centerX" secondItem="7Os-pr-d7E" secondAttribute="centerX" id="hTi-8H-t2t"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Os-pr-d7E"/>
@@ -95,6 +95,7 @@
                     <tabBarItem key="tabBarItem" title="Photo" image="photo-camera-dark" selectedImage="photo-camera" id="cLC-bm-Z5N"/>
                     <connections>
                         <outlet property="imageTake" destination="y94-0F-rFS" id="nIO-oT-e3Z"/>
+                        <outlet property="takePhotoButton" destination="4BH-nX-xQa" id="Eca-b3-XSo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SL9-Ae-gyn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -139,6 +140,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="RED-6e-mdm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0rh-ug-Hqq">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
