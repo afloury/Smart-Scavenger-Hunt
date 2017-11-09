@@ -11,8 +11,7 @@ beacon_uuid = None
 
 
 def init():
-    #call(['hciconfig', bluetooth_device, 'up'])
-    #call(['hciconfig', bluetooth_device, 'leadv', '0'])
+    call(['hciconfig', bluetooth_device, 'up'])
     pass
 
 
