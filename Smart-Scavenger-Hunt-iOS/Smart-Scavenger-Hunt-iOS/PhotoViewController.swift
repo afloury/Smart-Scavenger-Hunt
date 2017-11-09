@@ -88,7 +88,8 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     //MARK: - Saving Image here
     @IBAction func sendImage(_ sender: AnyObject) {
         if imageTake.image != nil {
-            let imageData = UIImageJPEGRepresentation(imageTake.image!, 1.0)!
+            let resizedImage = imageTake.image!.resized(toWidth: 800)
+            let imageData = UIImageJPEGRepresentation(resizedImage!, 0.75)!
             
             Alamofire.upload(imageData, to: "\(urlBaseRouter)picture/").responseJSON { response in
                 //debugPrint(response)
