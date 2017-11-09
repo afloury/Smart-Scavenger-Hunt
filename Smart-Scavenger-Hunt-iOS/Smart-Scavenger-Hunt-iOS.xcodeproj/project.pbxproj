@@ -14,6 +14,7 @@
 		3F51B8BA1FB2EF7C00AF2DD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F51B8B81FB2EF7C00AF2DD6 /* LaunchScreen.storyboard */; };
 		3FFB10E01FB3454900EC420C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB10DF1FB3454900EC420C /* HomeViewController.swift */; };
 		3FFB10E21FB3506500EC420C /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB10E11FB3506500EC420C /* PhotoViewController.swift */; };
+		EA1CCEC159624109B14DE961 /* Pods_Smart_Scavenger_Hunt_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EE3A9B9E24311E58DF2666C /* Pods_Smart_Scavenger_Hunt_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +25,12 @@
 		3F51B8B61FB2EF7C00AF2DD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F51B8B91FB2EF7C00AF2DD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F51B8BB1FB2EF7C00AF2DD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FB777191FB48E5300C34BED /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FFB10DF1FB3454900EC420C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3FFB10E11FB3506500EC420C /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		4EE3A9B9E24311E58DF2666C /* Pods_Smart_Scavenger_Hunt_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smart_Scavenger_Hunt_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		683825B225D42FB08D0AE4E0 /* Pods-Smart-Scavenger-Hunt-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart-Scavenger-Hunt-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smart-Scavenger-Hunt-iOS/Pods-Smart-Scavenger-Hunt-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		E689825FEE503BD24DD02943 /* Pods-Smart-Scavenger-Hunt-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart-Scavenger-Hunt-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smart-Scavenger-Hunt-iOS/Pods-Smart-Scavenger-Hunt-iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA1CCEC159624109B14DE961 /* Pods_Smart_Scavenger_Hunt_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +50,8 @@
 			children = (
 				3F51B8AE1FB2EF7C00AF2DD6 /* Smart-Scavenger-Hunt-iOS */,
 				3F51B8AD1FB2EF7C00AF2DD6 /* Products */,
+				929E3C7502E36B6A1C29AB0A /* Pods */,
+				B18BDC1C92457B412C10089A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +78,24 @@
 			path = "Smart-Scavenger-Hunt-iOS";
 			sourceTree = "<group>";
 		};
+		929E3C7502E36B6A1C29AB0A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				683825B225D42FB08D0AE4E0 /* Pods-Smart-Scavenger-Hunt-iOS.debug.xcconfig */,
+				E689825FEE503BD24DD02943 /* Pods-Smart-Scavenger-Hunt-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B18BDC1C92457B412C10089A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FB777191FB48E5300C34BED /* Alamofire.framework */,
+				4EE3A9B9E24311E58DF2666C /* Pods_Smart_Scavenger_Hunt_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +103,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F51B8BE1FB2EF7C00AF2DD6 /* Build configuration list for PBXNativeTarget "Smart-Scavenger-Hunt-iOS" */;
 			buildPhases = (
+				A15EFED72E7CEAF4F01B8881 /* [CP] Check Pods Manifest.lock */,
 				3F51B8A81FB2EF7C00AF2DD6 /* Sources */,
 				3F51B8A91FB2EF7C00AF2DD6 /* Frameworks */,
 				3F51B8AA1FB2EF7C00AF2DD6 /* Resources */,
+				CCDE58B2FD1EA774EA3C68FB /* [CP] Embed Pods Frameworks */,
+				4DA4414DEDD7F2AB67C3B751 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -136,6 +165,64 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4DA4414DEDD7F2AB67C3B751 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Smart-Scavenger-Hunt-iOS/Pods-Smart-Scavenger-Hunt-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A15EFED72E7CEAF4F01B8881 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Smart-Scavenger-Hunt-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCDE58B2FD1EA774EA3C68FB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Smart-Scavenger-Hunt-iOS/Pods-Smart-Scavenger-Hunt-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Smart-Scavenger-Hunt-iOS/Pods-Smart-Scavenger-Hunt-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3F51B8A81FB2EF7C00AF2DD6 /* Sources */ = {
@@ -280,6 +367,7 @@
 		};
 		3F51B8BF1FB2EF7C00AF2DD6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 683825B225D42FB08D0AE4E0 /* Pods-Smart-Scavenger-Hunt-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -295,6 +383,7 @@
 		};
 		3F51B8C01FB2EF7C00AF2DD6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E689825FEE503BD24DD02943 /* Pods-Smart-Scavenger-Hunt-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
