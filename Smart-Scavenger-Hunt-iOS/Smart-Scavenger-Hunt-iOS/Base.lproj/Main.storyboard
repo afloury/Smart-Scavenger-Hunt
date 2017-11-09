@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RED-6e-mdm">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home-->
+        <scene sceneID="uFl-w0-R1m">
+            <objects>
+                <viewController id="63q-TP-CBg" customClass="HomeViewController" customModule="Smart_Scavenger_Hunt_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r4u-RE-cPQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bonjour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZl-aU-bbz">
+                                <rect key="frame" x="158" y="46" width="59.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bienvenue au Scavenger Hunt pour commencer approchez vous du point d'inscription" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3e9-Jc-ChM">
+                                <rect key="frame" x="16" y="124" width="343" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3e9-Jc-ChM" firstAttribute="leading" secondItem="bde-Eb-N3v" secondAttribute="leading" constant="16" id="976-Lt-jOa"/>
+                            <constraint firstItem="bZl-aU-bbz" firstAttribute="centerX" secondItem="bde-Eb-N3v" secondAttribute="centerX" id="JUO-Qj-XJm"/>
+                            <constraint firstItem="3e9-Jc-ChM" firstAttribute="centerX" secondItem="bde-Eb-N3v" secondAttribute="centerX" id="L4T-7y-eRz"/>
+                            <constraint firstItem="bZl-aU-bbz" firstAttribute="top" secondItem="bde-Eb-N3v" secondAttribute="top" constant="26" id="Xr6-HA-rUN"/>
+                            <constraint firstItem="3e9-Jc-ChM" firstAttribute="top" secondItem="bZl-aU-bbz" secondAttribute="bottom" constant="57.5" id="mev-Ts-hXT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bde-Eb-N3v"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="house-dark" selectedImage="house" id="qQt-TF-sZk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DSr-ue-pQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-316" y="-82"/>
+        </scene>
+        <!--Photo-->
+        <scene sceneID="uT7-L8-0ID">
+            <objects>
+                <viewController id="SU8-dp-bCn" customClass="PhotoViewController" customModule="Smart_Scavenger_Hunt_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VAy-Bu-Cad">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lir-j3-QI0">
+                                <rect key="frame" x="16" y="568" width="343" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4BH-nX-xQa">
+                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                                        <state key="normal" title="Take Photo"/>
+                                        <connections>
+                                            <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PUY-jR-KaW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3n-bZ-lwJ">
+                                        <rect key="frame" x="175.5" y="0.0" width="167.5" height="30"/>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="sendImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vol-vg-rUa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y94-0F-rFS">
+                                <rect key="frame" x="16" y="339" width="343" height="221"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="221" id="B5v-UL-YfZ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="y94-0F-rFS" firstAttribute="leading" secondItem="7Os-pr-d7E" secondAttribute="leading" constant="16" id="Dfc-tg-Coy"/>
+                            <constraint firstItem="7Os-pr-d7E" firstAttribute="bottom" secondItem="lir-j3-QI0" secondAttribute="bottom" constant="20" id="IC8-ww-c69"/>
+                            <constraint firstItem="4BH-nX-xQa" firstAttribute="leading" secondItem="7Os-pr-d7E" secondAttribute="leading" constant="16" id="JP4-GS-qu7"/>
+                            <constraint firstItem="4BH-nX-xQa" firstAttribute="top" secondItem="y94-0F-rFS" secondAttribute="bottom" constant="8" id="PBb-2l-4kA"/>
+                            <constraint firstItem="y94-0F-rFS" firstAttribute="centerX" secondItem="7Os-pr-d7E" secondAttribute="centerX" id="cwH-Ti-LUd"/>
+                            <constraint firstItem="lir-j3-QI0" firstAttribute="centerX" secondItem="7Os-pr-d7E" secondAttribute="centerX" id="hTi-8H-t2t"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7Os-pr-d7E"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Photo" image="photo-camera-dark" selectedImage="photo-camera" id="cLC-bm-Z5N"/>
+                    <connections>
+                        <outlet property="imageTake" destination="y94-0F-rFS" id="nIO-oT-e3Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SL9-Ae-gyn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1137" y="1042"/>
+        </scene>
+        <!--Scan-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ScanViewController" customModule="Smart_Scavenger_Hunt_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identifiant" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zc6-V6-S9Z">
+                                <rect key="frame" x="16" y="589" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zc6-V6-S9Z" secondAttribute="trailing" constant="16" id="iHo-Fc-67I"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zc6-V6-S9Z" secondAttribute="bottom" constant="8" id="jMX-NQ-dVi"/>
+                            <constraint firstItem="zc6-V6-S9Z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="qdh-Vi-gxh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Scan" image="qr-code-dark" selectedImage="qr-code" id="wTT-yc-xSF"/>
+                    <connections>
+                        <outlet property="messageLabel" destination="zc6-V6-S9Z" id="dNZ-Am-fix"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-316" y="631.93403298350825"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="sEk-S2-13F">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="RED-6e-mdm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0rh-ug-Hqq">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="63q-TP-CBg" kind="relationship" relationship="viewControllers" id="c9t-yi-aMd"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="h09-Yh-ZHZ"/>
+                        <segue destination="SU8-dp-bCn" kind="relationship" relationship="viewControllers" id="ZxJ-vn-9Hg"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dr7-KA-LFn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1110.4000000000001" y="18.890554722638683"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="house" width="21" height="21"/>
+        <image name="house-dark" width="21" height="21"/>
+        <image name="photo-camera" width="21" height="21"/>
+        <image name="photo-camera-dark" width="21" height="21"/>
+        <image name="qr-code" width="21" height="21"/>
+        <image name="qr-code-dark" width="21" height="21"/>
+    </resources>
+</document>
