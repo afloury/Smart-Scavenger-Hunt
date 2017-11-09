@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+    <head>
+        <script src="libraries/qrcode/js/qrcode.min.js"></script>
+        <script src="libraries/jquery/js/jquery-3.2.1.min.js"></script>
+        <style type="text/css">
+            h1 {
+                text-align: center;
+            }
+
+            #qr_code_container {
+                padding-bottom: 25%;
+                width: 25%;
+                height: 0;
+                background: red;
+                margin: 10% auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Inscription / Retrait de Mission</h1>
+        <div id="qr_code_container"></div>
+        <h1 id="token"></h1>
+
+        <script type="text/javascript">
+            $(function() {
+
+                var qr_code_container = 'qr_code_container';
+                var qrcode = null;
+                var role = 'inscription_retrait';
+                var timeout = 5000;
+
+                function clear_qr_code() {
+                    if (qrcode !== null) {
+                        qrcode.clear();
+                        $('#' + qr_code_container).empty();
+                    }
+                }
+
+                function set_qr_code(content) {
+                    clear_qr_code();
+
+                    var qr_code_size = $('#' + qr_code_container).width();
+                    qrcode = new QRCode(document.getElementById(qr_code_container), {
+                        text: content,
+                        width: qr_code_size,
+                        height: qr_code_size,
+                        colorDark : '#000000',
+                        colorLight : '#ffffff',
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+                }
+
+                function request_qr_code(callback) {
+                    $.ajax({
+                        url: '/major-minor/' + role,
+                        success: function(data) {
+                            var token = data['major'] + data['minor'];
+
+                            $('#token').text(token);
+
+                            timeout = data['interval_secs'] * 1000 / 4;
+
+                            callback(token);
+                            setTimeout(full_qr_loop, timeout);
+                        },
+                        error: function() {
+                            $('#token').text('');
+
+                            clear_qr_code();
+                            setTimeout(full_qr_loop, 2000);
+                        },
+                        timeout: timeout
+                    });
+                }
+
+                function full_qr_loop() {
+                    request_qr_code(set_qr_code);
+                }
+
+                full_qr_loop();
+            });
+        </script>
+    </body>
+
+</html>
