@@ -17,12 +17,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/hello/', methods=['GET'])
-def list_all_nodes():
-    return 'salut'
-
-
-@app.route('/vision/', methods=['POST'])
+@app.route('/picture/', methods=['POST'])
 def google_vision():
     raw_data = request.stream.read()
     image = types.Image(content=raw_data)
@@ -39,5 +34,5 @@ def google_vision():
     return 'ok'
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
