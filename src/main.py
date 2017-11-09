@@ -16,8 +16,13 @@ CORS(app)
 def google_vision():
     raw_data = request.stream.read()
 
-    print('received post of length %d' % len(raw_data))
+    print('Received post of length %d' % len(raw_data))
 
+    # Todo: Router vers le bon container (docker, tout ça)
+    response = requests.post('http://127.0.0.1:5000/picture/', data=raw_data)
+    print('Transfer to game: HTTP %d' % response.status_code)
+
+    # Sauvegarde dans un fichier pour debug
     yolo_file = open('picture.jpeg', 'wb')
     yolo_file.write(raw_data)
     yolo_file.close()
