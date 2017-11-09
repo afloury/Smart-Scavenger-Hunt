@@ -19,13 +19,13 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     var uuidWithdrawal = ""
     var uuidDelivery = ""
     let keychain = KeychainSwift()
+    var regions = [CLBeaconRegion]()
+    var idRegion = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        prepareCaptureSession()
-        loadUUID()
-        displayRegisterView()
+        
     }
     
     func loadUUID() {
@@ -49,7 +49,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         
         let uuidW = UUID(uuidString: self.uuidWithdrawal)!
         let uuidD = UUID(uuidString: self.uuidDelivery)!
-        let regions = [CLBeaconRegion(proximityUUID: uuidD, identifier: "depot"),
+        regions = [CLBeaconRegion(proximityUUID: uuidD, identifier: "depot"),
                        CLBeaconRegion(proximityUUID: uuidW, identifier: "inscription_retrait")]
         
         regions.forEach { region in
@@ -88,7 +88,6 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
             if ![1, 2, 3].contains(beacon.proximity.rawValue) { return }
             var message = ""
             let token_equipe_present = keychain.get("token")
-            var idRegion = ""
             switch (token_equipe_present, region.identifier) {
             case(nil, "depot"):
                 print("Informer l'utilisateur qu'il doit s'inscrire")
@@ -96,11 +95,21 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
                     idRegion = region.identifier
                     message += "you have to go to the registration point first"
                     displayAlert(message: message)
+                    self.regions.forEach { regionBeacon in
+                        locationManager.stopRangingBeacons(in: regionBeacon)
+                    }
                 }
                 break
             case(nil, "inscription_retrait"):
                 print("Déclencher code pour s'inscrire")
-                message += "inscription"
+                if idRegion == region.identifier {
+                    idRegion = region.identifier
+                    message += "inscription"
+                    displayRegisterView()
+                    self.regions.forEach { regionBeacon in
+                        locationManager.stopRangingBeacons(in: regionBeacon)
+                    }
+                }
                 break
             case(_, "depot"):
                 print("Déclencher code pour déposer photo")
@@ -161,6 +170,8 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         
         if metadataObj.type == .qr && metadataObj.stringValue != nil {
             messageLabel.text = metadataObj.stringValue
+            displayAlert(message: metadataObj.stringValue!)
+            stopSessionQrCode()
         } else {
             messageLabel.text = "Identifiant"
         }
@@ -200,7 +211,22 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         captureSession.commitConfiguration()
     }
     
+    func stopSessionQrCode() {
+        captureSession?.stopRunning()
+        previewLayer.removeFromSuperlayer()
+        self.previewLayer = nil
+        self.captureSession = nil
+    }
+    
     func captureOutput(_ captureOutput: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
+    }
+    
+    @IBAction func SearchBeacon(_ sender: Any) {
+        prepareCaptureSession()
+    }
+    
+    @IBAction func searchQRCode(_ sender: Any) {
+        loadUUID()
     }
 }
