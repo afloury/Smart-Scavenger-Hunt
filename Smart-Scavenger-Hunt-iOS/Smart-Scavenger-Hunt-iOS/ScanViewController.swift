@@ -1,6 +1,9 @@
 import UIKit
 import AVFoundation
 import CoreLocation
+import Alamofire
+import SwiftyJSON
+import KeychainSwift
 
 class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCaptureMetadataOutputObjectsDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, CLLocationManagerDelegate {
 
@@ -8,13 +11,34 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     var captureSession:AVCaptureSession!
     var previewLayer:CALayer!
     var captureDevice:AVCaptureDevice!
-    var isEmpty = false
     let locationManager = CLLocationManager()
+    var urlBaseLocationRestriction = "http://172.30.1.208:5002/"
+    var urlBaseRouter = "http://172.30.1.208:5001/"
+
+    var uuidWithdrawal = ""
+    var uuidDelivery = ""
+    let keychain = KeychainSwift()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         prepareCaptureSession()
-        initBeacon()
+        loadUUID()
+    }
+    
+    func loadUUID() {
+        // 172.30.1.208:5002/uuid/
+        Alamofire.request("\(urlBaseLocationRestriction)uuid/").responseJSON { response in
+            //debugPrint(response)
+            
+            if let json = response.result.value {
+                print("JSON: \(json)")
+                let jsonObject = JSON(json)
+                self.uuidDelivery = jsonObject["depot"].stringValue
+                self.uuidWithdrawal = jsonObject["inscription_retrait"].stringValue
+                self.initBeacon()
+            }
+        }
     }
     
     func initBeacon() {
