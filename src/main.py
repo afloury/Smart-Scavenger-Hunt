@@ -37,10 +37,10 @@ def google_vision():
 
 @app.route('/team/', methods=['POST'])
 def register_team(lrid, team_name):
-    json_data = request.get_json(force=True)
+    data = request.get_json(force=True)
 
-    lrid = json_data['lrid']
-    team_name = json_data['name']
+    lrid = data['lrid']
+    team_name = data['name']
 
     # Todo: URL paramétrable
     try:
@@ -64,7 +64,7 @@ def register_team(lrid, team_name):
 
     return json_data({
         'token': '89653832030e7d26daf3a43fc2ccd501'
-    })
+    }, response_code=201)
 
 
 if __name__ == '__main__':
