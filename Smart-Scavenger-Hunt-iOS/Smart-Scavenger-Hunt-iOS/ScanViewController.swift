@@ -169,25 +169,32 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
         if metadataObj.type == .qr && metadataObj.stringValue != nil {
-            messageLabel.text = metadataObj.stringValue
+            stopSessionQrCode()
             
-            let raw_qr_code = metadataObj.stringValue!
+            messageLabel.text = metadataObj.stringValue!
+            
+            guard let raw_qr_code = metadataObj.stringValue else {
+                displayAlert(message: "Problème")
+                return
+            }
             
             if raw_qr_code.range(of: ":") == nil {
                 displayAlert(message: "QR-Code invalide (1)")
                 return
             }
-            
+        
             let explode_test = raw_qr_code.characters.split(separator: ":").map(String.init)
             
             if explode_test[0] != "inscription_retrait" && explode_test[0] != "depot" {
                 displayAlert(message: "QR-Code invalide (2)")
             }
             
+            if explode_test[0] == "inscription_retrait" {
+                displayRegisterView()
+            }
             
-            displayAlert(message: "Point scanné : " + explode_test[0] + ", LRID=" + explode_test[1])
+            //displayAlert(message: "Point scanné : " + explode_test[0] + ", LRID=" + explode_test[1])
             
-            stopSessionQrCode()
         } else {
             messageLabel.text = "Identifiant"
         }
