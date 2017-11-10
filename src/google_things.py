@@ -1,3 +1,5 @@
+import random
+
 things = [
     'chair',
     'furniture',
@@ -35,3 +37,7 @@ things = [
     'mug',
     'cup'
 ]
+
+
+def gen_mission(nb):
+    return random.sample(things, nb)
