@@ -42,7 +42,7 @@ ________
 
 ________
 
-## Jour 3 (2017-11-09)
+## Jour 4 (2017-11-09)
 
 - Initialisation du serveur location-restriction
 - Route pour récupérer UUID beacon dans location-restriction
