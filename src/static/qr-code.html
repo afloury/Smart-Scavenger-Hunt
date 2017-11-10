@@ -44,7 +44,7 @@
 
                     var qr_code_size = $('#' + qr_code_container).width();
                     qrcode = new QRCode(document.getElementById(qr_code_container), {
-                        text: content,
+                        text: role + ':' + content,
                         width: qr_code_size,
                         height: qr_code_size,
                         colorDark : '#000000',
