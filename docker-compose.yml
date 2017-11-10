@@ -1,21 +1,35 @@
 version: '3'
 
 services:
+  redis:
+    image: 'redis'
+
+  lrid-generator:
+    image: 'smart-scavenger-hunt:lrid-generator'
+    networks: ['default', 'smart-scavenger-hunt']
+    depends_on: ['redis']
+
   router:
     image: 'smart-scavenger-hunt:router'
     ports: ['5001:80/tcp']
-    networks: ['smart-scavenger-hunt']
+    networks: ['default', 'smart-scavenger-hunt']
 
   location-restriction:
     image: 'smart-scavenger-hunt:location-restriction'
     ports: ['5002:80/tcp']
-    networks: ['smart-scavenger-hunt']
+    networks: ['default', 'smart-scavenger-hunt']
+    depends_on: ['redis']
 
   orchestrator:
     image: 'smart-scavenger-hunt:orchestrator'
     ports: ['5003:80/tcp']
-    networks: ['smart-scavenger-hunt']
+    networks: ['default', 'smart-scavenger-hunt']
     volumes: ['/var/run/docker.sock:/var/run/docker.sock']
+
+  game:
+    image: 'smart-scavenger-hunt:game'
+    ports: ['5004:80/tcp']
+    networks: ['default', 'smart-scavenger-hunt']
 
 networks:
   smart-scavenger-hunt:
