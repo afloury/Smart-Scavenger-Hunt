@@ -1,5 +1,9 @@
 gunicorn
+
 Flask
 Flask-Cors
+
+redis
 requests
+
 google-cloud-vision==0.28.0

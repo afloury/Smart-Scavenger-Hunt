@@ -15,8 +15,8 @@ client = vision.ImageAnnotatorClient()
 app = Flask(__name__)
 CORS(app)
 
-# Todo: URL paramétrable
-router_server = 'http://127.0.0.1:5001'
+# Todo: URL paramétrable depuis ENV ?
+router_server = 'http://router'
 
 # Todo: récupérer token équipe depuis ENV lors du démarrage du container
 token_equipe = '89653832030e7d26daf3a43fc2ccd501'
@@ -46,17 +46,18 @@ def google_vision():
                 current_mission.remove(item)
                 print('WIN WITH %s' % label.description)
 
-                #response = requests.post(router_server + '/rpi-notification/', json={
-                #    'team': nom_equipe,
-                #    'item': label.description
-                #})
+                response = requests.post(router_server + '/rpi-notification/', json={
+                    'team': nom_equipe,
+                    'item': label.description
+                })
 
-                print(response.status_code)
-                print(response.content)
+                return json_response('WIN WITH : %s  AND rpi-notification is HTTP %d with content %s' % (
+                    label.description,
+                    response.status_code,
+                    response.content.decode('utf-8')
+                ))
 
-                return 'ok'
-
-    return 'fail'
+    return json_response('FAIL :/')
 
 
 @app.route('/mission/', methods=['GET'])

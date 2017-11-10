@@ -1,11 +1,12 @@
 FROM python:3.6
 
-WORKDIR /root
+ENV GOOGLE_APPLICATION_CREDENTIALS key.json
 
 ADD requirements.txt .
 RUN python3 -m pip install -r requirements.txt
 
-COPY src /SmartScavengerHunt_game/
+ADD src /SmartScavengerHunt_game/
+WORKDIR /SmartScavengerHunt_game/
 
 EXPOSE 80
 CMD [\
