@@ -398,7 +398,7 @@ Register your team</string>
         <!--Tab Bar Controller-->
         <scene sceneID="sEk-S2-13F">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="RED-6e-mdm" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="RED-6e-mdm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0rh-ug-Hqq">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

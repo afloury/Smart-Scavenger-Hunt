@@ -3,6 +3,7 @@ import AVFoundation
 import Alamofire
 import SwiftyJSON
 import Photos
+import KeychainSwift
 
 class PhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AVCaptureMetadataOutputObjectsDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, CLLocationManagerDelegate {
     
@@ -17,6 +18,7 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     var latitude = 0.0
     var longitude = 0.0
     var listenNextLocation = false
+    let keychain = KeychainSwift()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +95,19 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
             let resizedImage = imageTake.image!.resized(toWidth: 800)
             let imageData = UIImageJPEGRepresentation(resizedImage!, 0.75)!
             
-            Alamofire.upload(imageData, to: "\(urlBaseRouter)picture/").responseJSON { response in
+            guard let token = keychain.get("token") else {
+                let alertController = UIAlertController.init(title: nil, message: "Connectez-vous", preferredStyle: .alert)
+                let okAction = UIAlertAction.init(title: "Ok", style: .default, handler: {(alert: UIAlertAction!) in
+                })
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+                return
+            }
+            
+            let headers: HTTPHeaders = [
+                "Authentication": token
+            ]
+            Alamofire.upload(imageData, to: "\(urlBaseRouter)picture/", headers: headers).responseJSON { response in
                 //debugPrint(response)
                 if let json = response.result.value {
                     print("JSON: \(json)")

@@ -35,11 +35,47 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
             
             if let json = response.result.value {
                 print("JSON: \(json)")
+                
                 let jsonObject = JSON(json)
+                let jsonArray = jsonObject.arrayValue
+                print(jsonObject)
                 self.uuidDelivery = jsonObject["depot"].stringValue
                 self.uuidWithdrawal = jsonObject["inscription_retrait"].stringValue
                 self.initBeacon()
             }
+        }
+    }
+    
+    func getMission(lrID: String, token: String) {
+        if let home = tabBarController?.viewControllers![0] as? HomeViewController {
+            
+            let headers = [
+                "X-SmartScavengerHunt-LRID": lrID,
+                "Authentication": token
+            ]
+            
+            Alamofire.request("\(urlBaseRouter)mission/", headers: headers).responseJSON { response in
+                //debugPrint(response)
+                
+                if let json = response.result.value {
+                    print("JSON: \(json)")
+                    print(type(of: json))
+                    let jsonObject = JSON(json)
+                    print(jsonObject.arrayValue[0].stringValue)
+                    
+                    var items = [String]()
+                    for element in jsonObject.arrayValue {
+                        items.append(element.stringValue)
+                    }
+                    
+                    home.hadMission = true
+                    home.items = items
+                    self.tabBarController?.selectedIndex = 0
+                }
+            }
+            
+            
+            
         }
     }
     
@@ -63,6 +99,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     func displayRegisterView(lrID: String) {
         registerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registerViewController") as! RegisterTeamViewController
         registerViewController.lrID = lrID
+        registerViewController.tabBarCtrl = tabBarController!
         let card = registerViewController.view!
         let screenSize = UIScreen.main.bounds
         let screenHeight = screenSize.height
@@ -119,6 +156,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
             case(_, "inscription_retrait"):
                 print("Déclencher code pour retirer mission")
                 message += "retrait"
+                getMission(lrID: lrID, token: token_equipe_present!)
                 break
             case (_, _):
                 // wtf
@@ -196,6 +234,11 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
             if pointIdentifier == "inscription_retrait" && token_equipe_present == nil {
                 displayRegisterView(lrID: lrID)
             }
+            
+            if pointIdentifier == "inscription_retrait" && token_equipe_present != nil {
+                getMission(lrID: lrID, token: token_equipe_present!)
+            }
+            
             
             //displayAlert(message: "Point scanné : " + explode_test[0] + ", LRID=" + explode_test[1])
             

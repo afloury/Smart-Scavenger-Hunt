@@ -18,6 +18,7 @@ class RegisterTeamViewController: UIViewController {
     var lrID = ""
     var urlBaseRouter = "http://172.30.1.208:5001/"
     let keychain = KeychainSwift()
+    var tabBarCtrl: UITabBarController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,7 @@ class RegisterTeamViewController: UIViewController {
                     print(error)
                 }
                 self.view.removeFromSuperview()
+                self.tabBarCtrl.selectedIndex = 0
             }
         } else {
             // nom d'équipe vide

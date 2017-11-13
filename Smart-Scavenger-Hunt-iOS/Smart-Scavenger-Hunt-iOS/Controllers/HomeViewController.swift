@@ -9,6 +9,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var messageTitle: UILabel!
     @IBOutlet weak var titleTableV: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    var hadMission = false
+    
+    var items = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +24,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let token = keychain.get("token") {
             titleTop.text = "Hey"
             messageTitle.text = "Go to the withdrawal point to get your mission"
-            titleTableV.isHidden = false
-            tableView.isHidden = false
+            titleTableV.isHidden = true
+            tableView.isHidden = true
         } else {
             titleTop.text = "Hello"
             messageTitle.text = "Welcome to Scavenger Hunt\nto start a session go near to registration point"
@@ -30,16 +33,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             titleTableV.isHidden = true
             tableView.isHidden = true
         }
+        
+        if hadMission {
+            titleTop.text = "Let's begin !"
+            messageTitle.text = "You need to get one of this:"
+            titleTableV.isHidden = false
+            tableView.isHidden = false
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
-        cell.textLabel?.text = "hey"
-        cell.detailTextLabel?.text = "ho"
+        cell.textLabel?.text = items[indexPath.row]
         return cell
     }
     

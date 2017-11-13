@@ -41,6 +41,9 @@ class SettingsTableViewController: UITableViewController {
         if indexPath.section == 1 && indexPath.row == 0 {
             print("disconnect")
             keychain.clear()
+            numberOfSection = 1
+            tableView.reloadData()
+            tabBarController?.selectedIndex = 0
         }
     }
 }
