@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import KeychainSwift
 
 class RegisterTeamViewController: UIViewController {
 
     @IBOutlet weak var startSession: UIButton!
+    @IBOutlet weak var teamTextField: UITextField!
+    var lrID = ""
+    var urlBaseRouter = "http://172.30.1.208:5001/"
+    let keychain = KeychainSwift()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +31,38 @@ class RegisterTeamViewController: UIViewController {
     }
     
     @IBAction func startSession(_ sender: Any) {
+        if (teamTextField.text != nil) {
+            let parameters: Parameters = [
+                "name": teamTextField.text!
+            ]
+            let headers = [
+                "X-SmartScavengerHunt-LRID": lrID
+            ]
+            Alamofire.request("\(urlBaseRouter)team/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    if let token = json["token"].string {
+                        self.keychain.set(token, forKey: "token")
+                    } else {
+                        if let message = json["message"].string {
+                            let alertController = UIAlertController.init(title: nil, message: message, preferredStyle: .alert)
+                            let okAction = UIAlertAction.init(title: "Ok", style: .default, handler: {(alert: UIAlertAction!) in
+                            })
+                            alertController.addAction(okAction)
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                    }
+                    
+                    //print("JSON: \(json)")
+                case .failure(let error):
+                    print(error)
+                }
+                self.view.removeFromSuperview()
+            }
+        } else {
+            // nom d'équipe vide
+        }
     }
     
     @IBAction func cancelView(_ sender: Any) {
