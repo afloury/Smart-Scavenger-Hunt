@@ -11,7 +11,9 @@ Based on the scavenger hunt game, the goal is to :
 - go to the withdrawal point
 - Get a list of objects
 - Take a photo of one object in the list
-- Go to the 
+- Go to the delivery point
+- Send your photo and you can see the result (Now you can get an other mission)
+- A supervision for organiser to see stats, ranks, photos with locations...
 
 
 ## Installing
