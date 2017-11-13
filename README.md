@@ -1,7 +1,25 @@
 # Smart-Scavenger-Hunt
 IOT Project based on the principle of Scavenger Hunt
 
-### Description
+
+
+## About this projet
+
+Based on the scavenger hunt game, the goal is to :
+- Go to the registration point
+- Create your team
+- go to the withdrawal point
+- Get a list of objects
+- Take a photo of one object in the list
+- Go to the 
+
+
+## Installing
+
+
+
+## Making your own
+
 
 
 ## Branches
