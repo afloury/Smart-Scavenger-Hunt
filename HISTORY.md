@@ -54,3 +54,24 @@ ________
 - Route inscription dans le routeur (pas encore testée avec iOS pour l'instant)
 - Calibration proximité pour détection iBeacon proche sur Raspberry Pi
 - Rédaction liste d'objets reconnus par google (pour choisir aléatoirement ceux donnés aux équipes)
+
+________
+
+## Jour 5 (2017-11-10)
+
+- Route création d'équipe
+- Route mission (game/router)
+- création de conteneurs docker pour:
+  - le jeu
+  - location-restriction
+  - router
+  - orchestrator
+- Création conteneur lrid-generator
+- Récupération des fonctionalités génération UUID et LRID du conteneur location-restriction
+- Fichier docker-compose pour tests
+- Utilisation de gunicorn dans les conteneurs docker pour performances, scalabilité et requêtes concurrentes
+- Ajout redis pour éviter conflits mémoire global dans lrid-generator et location-restriction
+- Amélioration de l'interface de scan (iOS) gestion des actions en fonction du point
+- Page de settings avec deconnexion d'équipe
+- Amélioration page d'accueil avec tableView (iOS)
+- Création d'équipe (iOS)
