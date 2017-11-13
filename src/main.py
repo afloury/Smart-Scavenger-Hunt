@@ -1,5 +1,5 @@
 # coding=utf-8
-from flask import Flask, request
+from flask import Flask, request, make_response
 from flask_cors import CORS
 from json_responses import json_data, json_error, json_response
 import json
@@ -20,7 +20,7 @@ orchestrator_server = 'http://orchestrator'
 copied_headers = ['X-SmartScavengerHunt-LRID', 'Content-Type']
 
 
-def routing_to_container(method, route):
+def routing_to_game(method, route):
     # Obtention des infos de l'équipe
     if 'Authentication' not in request.headers:
         return json_error('HTTP header Authentication should be set to access this route.')
@@ -50,32 +50,12 @@ def routing_to_container(method, route):
         return json_error('Impossible de contacter le container de jeu.')
 
     # Réponse routeur => iOS
-    response_headers = {}
+    response = make_response(response.content)
     for copied_header in ['X-SmartScavengerHunt-LRID', 'Content-Type']:
         if copied_header in response.headers:
-            response_headers[copied_header] = response.headers[copied_header]
+            response.headers[copied_header] = response.headers[copied_header]
 
-    return response.content, response.status_code, response_headers
-
-
-@app.route('/picture/', methods=['POST'])
-def google_vision():
-    raw_data = request.stream.read()
-
-    print('Received post of length %d' % len(raw_data))
-
-    # Todo: Router vers le bon container (docker, tout ça)
-    response = requests.post('http://game/picture/', data=raw_data)
-    print('Transfer to game: HTTP %d' % response.status_code)
-
-    response_message = response.json()['message']
-
-    # Sauvegarde dans un fichier pour debug
-    yolo_file = open('picture.jpeg', 'wb')
-    yolo_file.write(raw_data)
-    yolo_file.close()
-
-    return json_response(response_message)
+    return response
 
 
 @app.route('/team/', methods=['POST'])
@@ -140,20 +120,70 @@ def register_team():
 
 @app.route('/mission/', methods=['GET'])
 def get_mission():
-    return routing_to_container('get', '/mission/')
+    return routing_to_game('get', '/mission/')
+
+
+@app.route('/picture/', methods=['POST'])
+def post_picture():
+    return routing_to_game('post', '/picture/')
 
 
 @app.route('/rpi-notification/', methods=['POST'])
 def post_rpi_notification():
     data = request.get_json(force=True)
 
-    print('Received win notification')
-    print('    => Team: ' + data['team'])
-    print('    => Item: ' + data['item'])
-    print('')
+    lock_notifications = r.lock('lock_rpi_notifications')
+    lock_notifications.acquire(True)
+
+    notifications = r.get('rpi_notifications')
+    if notifications is None:
+        notifications = []
+    else:
+        notifications = json.loads(notifications.decode('utf-8'))
+
+    notifications += [{
+        'team': data['team'],
+        'message': data['message']
+    }]
+
+    r.set('rpi_notifications', json.dumps(notifications).encode('utf-8'))
+
+    lock_notifications.release()
 
     return json_response('good boy')
 
 
+@app.route('/rpi-notification/', methods=['DELETE'])
+def delete_rpi_notification():
+    lock_notifications = r.lock('lock_rpi_notifications')
+    lock_notifications.acquire(True)
+
+    notifications = r.get('rpi_notifications')
+    if notifications is None:
+        lock_notifications.release()
+        return '', 204
+
+    notifications = json.loads(notifications.decode('utf-8'))
+    if len(notifications) == 0:
+        return '', 204
+
+    notifications.pop(0)
+    r.set('rpi_notifications', json.dumps(notifications).encode('utf-8'))
+    lock_notifications.release()
+
+    return '', 204
+
+
+@app.route('/rpi-notification/', methods=['GET'])
+def get_rpi_notification():
+    notifications = r.get('rpi_notifications')
+    if notifications is None:
+        notifications = []
+    else:
+        notifications = json.loads(notifications.decode('utf-8'))
+
+    return json_data(notifications[0] if len(notifications) > 1 else [])
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=80, debug=True)
