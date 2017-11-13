@@ -12,11 +12,12 @@ Get a new mission or the current mission
 
 ***
 
-## Parameters
+## Headers
 Essential information:
+**In the header request**
 
-- **Name** — The name of the team
-- **LRID** — Location Restriction Identifier from QR Code or Beacon
+- **Authentication** — Token get from the registration
+- **X-SmartScavengerHunt-LRID** — Location Restriction Identifier from QR Code or Beacon
 
 ***
 
