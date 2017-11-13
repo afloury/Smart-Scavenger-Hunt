@@ -28,7 +28,10 @@ def create_container():
         remove=True,
         name=container_name,
         detach=True,
-        network='smart-scavenger-hunt'
+        network='smart-scavenger-hunt',
+        environment={
+            'TEAM_UUID': data['team_uuid']
+        }
     )
 
     return json_data({
@@ -37,4 +40,4 @@ def create_container():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=80, debug=True)
