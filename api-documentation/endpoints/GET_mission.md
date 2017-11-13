@@ -14,7 +14,9 @@ Get a new mission or the current mission
 
 ## Parameters
 Essential information:
+**In the header request**
 
+- **TokenTeam** — Token get from the registration
 - **LRID** — Location Restriction Identifier from QR Code or Beacon
 
 ***
