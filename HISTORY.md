@@ -75,3 +75,15 @@ ________
 - Page de settings avec deconnexion d'équipe
 - Amélioration page d'accueil avec tableView (iOS)
 - Création d'équipe (iOS)
+
+________
+
+## Jour 6 (2017-11-13)
+
+- Déconnection de l'équipe dans l'application iOS
+- Connexion entre le routeur et l'orchestrateur, pour créer le conteneur de jeu à l'inscription
+- Le Routeur redirige la route /mission/ vers le conteneur de jeu (game)
+- Utilisation du token d'équipe dans requêtes alamofire sur l'application iOS
+- L'orchestrateur créé bien les conteneurs à la volée
+- Utilisation redis dans container game
+- Amélioration de l'expérience utilisateur (interface app iOS)
