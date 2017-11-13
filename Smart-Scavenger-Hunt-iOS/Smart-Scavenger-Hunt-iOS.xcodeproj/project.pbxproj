@@ -72,19 +72,59 @@
 		3F51B8AE1FB2EF7C00AF2DD6 /* Smart-Scavenger-Hunt-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3F51B8AF1FB2EF7C00AF2DD6 /* AppDelegate.swift */,
-				3F51B8B11FB2EF7C00AF2DD6 /* ScanViewController.swift */,
-				3F51B8B31FB2EF7C00AF2DD6 /* Main.storyboard */,
+				3FE3A17B1FB9E43F0072048F /* Modal */,
+				3FE3A17A1FB9E2DC0072048F /* Configuration */,
+				3FE3A1791FB9E1910072048F /* Views */,
+				3FE3A1781FB9DF950072048F /* Utils */,
 				3F51B8B61FB2EF7C00AF2DD6 /* Assets.xcassets */,
-				3F51B8B81FB2EF7C00AF2DD6 /* LaunchScreen.storyboard */,
-				3F51B8BB1FB2EF7C00AF2DD6 /* Info.plist */,
-				3FB7771C1FB5108800C34BED /* ResizableUIImage.swift */,
-				3FFB10DF1FB3454900EC420C /* HomeViewController.swift */,
-				3FFB10E11FB3506500EC420C /* PhotoViewController.swift */,
-				3FB7771A1FB5077A00C34BED /* RegisterTeamViewController.swift */,
-				3FE3A1751FB60B8D0072048F /* SettingsTableViewController.swift */,
+				3FE3A1771FB9DF610072048F /* Controllers */,
 			);
 			path = "Smart-Scavenger-Hunt-iOS";
+			sourceTree = "<group>";
+		};
+		3FE3A1771FB9DF610072048F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3FFB10DF1FB3454900EC420C /* HomeViewController.swift */,
+				3F51B8B11FB2EF7C00AF2DD6 /* ScanViewController.swift */,
+				3FFB10E11FB3506500EC420C /* PhotoViewController.swift */,
+				3FE3A1751FB60B8D0072048F /* SettingsTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3FE3A1781FB9DF950072048F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3FB7771C1FB5108800C34BED /* ResizableUIImage.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3FE3A1791FB9E1910072048F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3F51B8B31FB2EF7C00AF2DD6 /* Main.storyboard */,
+				3F51B8B81FB2EF7C00AF2DD6 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3FE3A17A1FB9E2DC0072048F /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				3F51B8BB1FB2EF7C00AF2DD6 /* Info.plist */,
+				3F51B8AF1FB2EF7C00AF2DD6 /* AppDelegate.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		3FE3A17B1FB9E43F0072048F /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				3FB7771A1FB5077A00C34BED /* RegisterTeamViewController.swift */,
+			);
+			path = Modal;
 			sourceTree = "<group>";
 		};
 		929E3C7502E36B6A1C29AB0A /* Pods */ = {
