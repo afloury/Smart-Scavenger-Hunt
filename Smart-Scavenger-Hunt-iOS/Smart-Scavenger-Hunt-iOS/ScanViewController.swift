@@ -60,9 +60,9 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         }
     }
     
-    func displayRegisterView() {
+    func displayRegisterView(lrID: String) {
         registerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registerViewController") as! RegisterTeamViewController
-
+        registerViewController.lrID = lrID
         let card = registerViewController.view!
         let screenSize = UIScreen.main.bounds
         let screenHeight = screenSize.height
@@ -86,6 +86,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         print("")
         beacons.forEach({ (beacon) in
             if ![1, 2, 3].contains(beacon.proximity.rawValue) { return }
+            let lrID = String(format:"%04x", beacon.major as! UInt32) + String(format:"%04x", beacon.minor as! UInt32)
             var message = ""
             let token_equipe_present = keychain.get("token")
             switch (token_equipe_present, region.identifier) {
@@ -105,7 +106,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
                 if idRegion == region.identifier {
                     idRegion = region.identifier
                     message += "inscription"
-                    displayRegisterView()
+                    displayRegisterView(lrID: lrID)
                     self.regions.forEach { regionBeacon in
                         locationManager.stopRangingBeacons(in: regionBeacon)
                     }
@@ -167,6 +168,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         }
         // Get the metadata object.
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        let token_equipe_present = keychain.get("token")
         
         if metadataObj.type == .qr && metadataObj.stringValue != nil {
             stopSessionQrCode()
@@ -183,14 +185,16 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
                 return
             }
         
-            let explode_test = raw_qr_code.characters.split(separator: ":").map(String.init)
+            let metadataSplitted = raw_qr_code.split(separator: ":").map(String.init)
+            let pointIdentifier = metadataSplitted[0]
+            let lrID = metadataSplitted[1]
             
-            if explode_test[0] != "inscription_retrait" && explode_test[0] != "depot" {
+            if pointIdentifier != "inscription_retrait" && pointIdentifier != "depot" {
                 displayAlert(message: "QR-Code invalide (2)")
             }
             
-            if explode_test[0] == "inscription_retrait" {
-                displayRegisterView()
+            if pointIdentifier == "inscription_retrait" && token_equipe_present == nil {
+                displayRegisterView(lrID: lrID)
             }
             
             //displayAlert(message: "Point scanné : " + explode_test[0] + ", LRID=" + explode_test[1])
@@ -246,10 +250,10 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     }
     
     @IBAction func SearchBeacon(_ sender: Any) {
-        prepareCaptureSession()
+        loadUUID()
     }
     
     @IBAction func searchQRCode(_ sender: Any) {
-        loadUUID()
+        prepareCaptureSession()
     }
 }
