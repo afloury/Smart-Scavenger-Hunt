@@ -15,7 +15,6 @@ Get a new mission or the current mission
 ## Parameters
 Essential information:
 
-- **Name** — The name of the team
 - **LRID** — Location Restriction Identifier from QR Code or Beacon
 
 ***
