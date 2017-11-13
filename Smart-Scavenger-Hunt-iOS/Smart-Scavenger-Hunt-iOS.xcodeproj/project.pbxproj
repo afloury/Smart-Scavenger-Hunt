@@ -14,6 +14,7 @@
 		3F51B8BA1FB2EF7C00AF2DD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F51B8B81FB2EF7C00AF2DD6 /* LaunchScreen.storyboard */; };
 		3FB7771B1FB5077A00C34BED /* RegisterTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB7771A1FB5077A00C34BED /* RegisterTeamViewController.swift */; };
 		3FB7771D1FB5108800C34BED /* ResizableUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB7771C1FB5108800C34BED /* ResizableUIImage.swift */; };
+		3FE3A1761FB60B8D0072048F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE3A1751FB60B8D0072048F /* SettingsTableViewController.swift */; };
 		3FFB10E01FB3454900EC420C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB10DF1FB3454900EC420C /* HomeViewController.swift */; };
 		3FFB10E21FB3506500EC420C /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB10E11FB3506500EC420C /* PhotoViewController.swift */; };
 		EA1CCEC159624109B14DE961 /* Pods_Smart_Scavenger_Hunt_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EE3A9B9E24311E58DF2666C /* Pods_Smart_Scavenger_Hunt_iOS.framework */; };
@@ -30,6 +31,7 @@
 		3FB777191FB48E5300C34BED /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FB7771A1FB5077A00C34BED /* RegisterTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTeamViewController.swift; sourceTree = "<group>"; };
 		3FB7771C1FB5108800C34BED /* ResizableUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizableUIImage.swift; sourceTree = "<group>"; };
+		3FE3A1751FB60B8D0072048F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		3FFB10DF1FB3454900EC420C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3FFB10E11FB3506500EC420C /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		4EE3A9B9E24311E58DF2666C /* Pods_Smart_Scavenger_Hunt_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smart_Scavenger_Hunt_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,7 @@
 				3FFB10DF1FB3454900EC420C /* HomeViewController.swift */,
 				3FFB10E11FB3506500EC420C /* PhotoViewController.swift */,
 				3FB7771A1FB5077A00C34BED /* RegisterTeamViewController.swift */,
+				3FE3A1751FB60B8D0072048F /* SettingsTableViewController.swift */,
 			);
 			path = "Smart-Scavenger-Hunt-iOS";
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				3FB7771B1FB5077A00C34BED /* RegisterTeamViewController.swift in Sources */,
 				3F51B8B21FB2EF7C00AF2DD6 /* ScanViewController.swift in Sources */,
 				3FFB10E21FB3506500EC420C /* PhotoViewController.swift in Sources */,
+				3FE3A1761FB60B8D0072048F /* SettingsTableViewController.swift in Sources */,
 				3FB7771D1FB5108800C34BED /* ResizableUIImage.swift in Sources */,
 				3F51B8B01FB2EF7C00AF2DD6 /* AppDelegate.swift in Sources */,
 				3FFB10E01FB3454900EC420C /* HomeViewController.swift in Sources */,
