@@ -3,6 +3,7 @@ version: '3'
 services:
   redis:
     image: 'redis'
+    networks: ['default', 'smart-scavenger-hunt']
 
   lrid-generator:
     image: 'smart-scavenger-hunt:lrid-generator'
