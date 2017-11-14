@@ -18,6 +18,11 @@ client = vision.ImageAnnotatorClient()
 app = Flask(__name__)
 CORS(app)
 
+# Configuration jeu
+points_won = 5
+points_lost = -1
+points_giveup = -2
+
 
 
 # Todo: Rendre configurable le serveur redis depuis ENV ?
@@ -62,16 +67,17 @@ def google_vision():
                 google_things.remove_item(item)  # Supprimer l'item pour ne plus l'avoir lors des prochains tirages
                 print('WIN WITH %s' % label.description)
 
-
                 team_data['mission'] = current_mission
                 r.set('team-' + os.environ['TEAM_UUID'], json.dumps(team_data).encode('utf-8'))
 
                 break
 
+    new_score = set_score(points_lost if winning_label is None else points_won, True)
     response = requests.post(router_server + '/rpi-notification/', json={
         'team': team_data['name'],
         'message': 'You lost.' if winning_label is None else ('You won with : \'%s\'' % winning_label),
-        'has_won': winning_label is not None
+        'has_won': winning_label is not None,
+        'points': new_score
     })
 
     if response.status_code != 200:
@@ -84,6 +90,20 @@ def google_vision():
 def get_mission():
     return json_data(get_or_create_mission())
 
+
+def set_score(score, apply_delta=False):
+    lock_current_team = r.lock('team-' + os.environ['TEAM_UUID'] + '_lock')
+    lock_current_team.acquire(True)
+
+    team_data = json.loads(r.get('team-' + os.environ['TEAM_UUID']).decode('utf-8'))
+    if 'score' not in team_data:
+        team_data['score'] = 0
+    team_data['score'] = (team_data['score'] + score) if apply_delta else score
+    r.set('team-' + os.environ['TEAM_UUID'], json.dumps(team_data).encode('utf-8'))
+
+    lock_current_team.release()
+
+    return team_data['score']
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
