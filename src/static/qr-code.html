@@ -2,6 +2,7 @@
 <html>
 
     <head>
+        <meta charset="UTF-8">
         <script src="libraries/qrcode/js/qrcode.min.js"></script>
         <script src="libraries/jquery/js/jquery-3.2.1.min.js"></script>
         <style type="text/css">
@@ -16,20 +17,36 @@
                 background: red;
                 margin: 10% auto;
             }
+
+            .hidden {
+                display: None;
+            }
         </style>
     </head>
 
     <body>
-        <h1>Inscription / Retrait de Mission</h1>
-        <div id="qr_code_container"></div>
-        <h1 id="token"></h1>
+        <div id="mode_selection_container" style="text-align: center;margin-top: 200px;">
+            <select id="mode">
+                <option value="inscription_retrait">Inscription / Retrait</option>
+                <option value="depot">Dépôt</option>
+            </select>
+            <br/>
+            <br/>
+            <button id="valider_mode">Valider</button>
+        </div>
+
+        <div id="main_qr_code_container" class="hidden">
+            <h1 id="mode_name_text"></h1>
+            <div id="qr_code_container"></div>
+            <h1 id="token"></h1>
+        </div>
 
         <script type="text/javascript">
             $(function() {
 
                 var qr_code_container = 'qr_code_container';
                 var qrcode = null;
-                var role = 'inscription_retrait';
+                var role = null;
                 var timeout = 5000;
 
                 function clear_qr_code() {
@@ -80,7 +97,18 @@
                     request_qr_code(set_qr_code);
                 }
 
-                full_qr_loop();
+                $('#valider_mode').click(function() {
+                    var mode_select = $('#mode');
+                    role = mode_select.val();
+                    $('#mode_name_text').text(mode_select.find("option:selected").text());
+
+                    $('#mode_selection_container').html('').addClass('hidden');
+                    $('#main_qr_code_container').removeClass('hidden');
+
+
+                    full_qr_loop();
+                });
+
             });
         </script>
     </body>
