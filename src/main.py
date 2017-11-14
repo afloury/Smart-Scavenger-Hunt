@@ -143,7 +143,8 @@ def post_rpi_notification():
 
     notifications += [{
         'team': data['team'],
-        'message': data['message']
+        'message': data['message'],
+        'has_won': data['has_won']
     }]
 
     r.set('rpi_notifications', json.dumps(notifications).encode('utf-8'))
@@ -182,7 +183,7 @@ def get_rpi_notification():
     else:
         notifications = json.loads(notifications.decode('utf-8'))
 
-    return json_data(notifications[0] if len(notifications) > 1 else [])
+    return json_data([notifications[0]] if len(notifications) > 0 else [])
 
 
 if __name__ == '__main__':
