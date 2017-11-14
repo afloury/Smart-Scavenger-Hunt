@@ -144,7 +144,8 @@ def post_rpi_notification():
     notifications += [{
         'team': data['team'],
         'message': data['message'],
-        'has_won': data['has_won']
+        'has_won': data['has_won'],
+        'points': data['points']
     }]
 
     r.set('rpi_notifications', json.dumps(notifications).encode('utf-8'))

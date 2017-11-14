@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <script src="libraries/jquery/js/jquery-3.2.1.min.js"></script>
         <style type="text/css">
             html, body {
@@ -37,15 +38,17 @@
         <div id="container">
             <h1 id="team_name">Connexion en cours</h1>
             <h2 id="message">Veuillez patienter...</h2>
+            <h2 id="points"></h2>
         </div>
 
         <script type="text/javascript">
             $(function() {
                 var polling_url = 'http://127.0.0.1:5001/rpi-notification/';
 
-                function display_notification(team, message, has_won) {
+                function display_notification(team, message, points, has_won) {
                     $('#team_name').text(team);
                     $('#message').text(message);
+                    $('#points').text(points);
                     $('#container').addClass(has_won ? 'won' : 'lost');
                 }
 
@@ -91,6 +94,7 @@
                             display_notification(
                                 data[0]['team'],
                                 data[0]['message'],
+                                data[0]['points'],
                                 data[0]['has_won']
                             );
 
@@ -102,7 +106,7 @@
                             }, 2500);
                         },
                         error: function(data) {
-                            display_notification('Erreur de connexion', 'Veuillez patientez, tentative de reconnexion en cours...', false);
+                            display_notification('Erreur de connexion', 'Veuillez patientez, tentative de reconnexion en cours...', '', false);
                             setTimeout(do_polling, 2000);
                         }
                     });
