@@ -46,15 +46,18 @@
                 var polling_url = 'http://127.0.0.1:5001/rpi-notification/';
 
                 function display_notification(team, message, points, has_won) {
+                    $('#container').addClass(has_won ? 'won' : 'lost');
+
                     $('#team_name').text(team);
                     $('#message').text(message);
                     $('#points').text(points);
-                    $('#container').addClass(has_won ? 'won' : 'lost');
                 }
 
                 function clear_notification() {
                     $('#team_name').text('');
                     $('#message').text('');
+                    $('#points').text(points);
+
                     $('#container').removeClass();
                 }
 
