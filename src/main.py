@@ -58,8 +58,10 @@ def google_vision():
             if label.score > 0.82 and item.lower() in label.description.lower():
                 winning_label = label.description
 
-                current_mission.remove(item)
+                current_mission.remove(item)  # Todo: Après avoir réussi un item de la mission, remove ou reset ?
+                google_things.remove_item(item)  # Supprimer l'item pour ne plus l'avoir lors des prochains tirages
                 print('WIN WITH %s' % label.description)
+
 
                 team_data['mission'] = current_mission
                 r.set('team-' + os.environ['TEAM_UUID'], json.dumps(team_data).encode('utf-8'))

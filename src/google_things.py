@@ -41,3 +41,7 @@ things = [
 
 def gen_mission(nb):
     return random.sample(things, nb)
+
+
+def remove_item(item):
+    things.remove()
