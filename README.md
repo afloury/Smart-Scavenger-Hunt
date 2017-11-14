@@ -20,7 +20,7 @@ Based on the scavenger hunt game, the goal is to :
 
 
 
-## Making your own
+## Making your own (Tutorial)
 
 
 
