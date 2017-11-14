@@ -58,4 +58,4 @@ All known errors cause the resource to return HTTP error code header together wi
 ```
 
 
-[OAuth]: https://github.com/afloury/Smart-Scavenger-Hunt-Router/blob/master/POST_team.md
+[OAuth]: https://github.com/afloury/Smart-Scavenger-Hunt/blob/router/api-documentation/endpoints/POST_team.md

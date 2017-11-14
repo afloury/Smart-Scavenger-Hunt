@@ -12,10 +12,18 @@ Send the picture at the delivery point to check if you have won this mission
 
 ***
 
+## Headers
+Essential information:
+**In the header request**
+
+- **Authentication** — Token get from the registration
+- **X-SmartScavengerHunt-LRID** — Location Restriction Identifier from QR Code or Beacon
+
+***
+
 ## Parameters
 Essential information:
 
-- **LRID** — Location Restriction Identifier from QR Code or Beacon
 - **Data** — Datas picture
 
 ***
