@@ -87,3 +87,24 @@ ________
 - L'orchestrateur créé bien les conteneurs à la volée
 - Utilisation redis dans container game
 - Amélioration de l'expérience utilisateur (interface app iOS)
+
+________
+
+## Jour 7 (2017-11-14)
+
+- Suppression de l'item gagné pour empêcher un retirage de celui-ci
+- Retour visuel du raspberry pi sur une page web
+- Afficher le bon nom du mode du qr_code en tête de page
+- Amélioration du code iOS
+  - Structure du projet
+  - Utilisation des alerte simplifié
+  - Centraliser les appels à l'API
+  - Expérience utilisateur
+- Settings de l'app pour configurer:
+  - L'adresse du routeur
+  - l'adresse de l'API Location restriction
+- Afficher la liste des éléments en page d'accueil (si liste) dans l'app iOS
+- Réaction identique beacon/QRCode dans l'application mobile
+- Calcul des points dans conteneur game (penser à utiliser redis)
+- Empêcher retirage d'un objet déjà pris en photo avant
+- Affichage des points sur retour visuel
