@@ -66,16 +66,11 @@ def google_vision():
 
                 break
 
-    if winning_label is None:
-        response = requests.post(router_server + '/rpi-notification/', json={
-            'team': team_data['name'],
-            'message': 'You lost.'
-        })
-    else:
-        response = requests.post(router_server + '/rpi-notification/', json={
-            'team': team_data['name'],
-            'message': 'You won with : \'%s\'' % winning_label
-        })
+    response = requests.post(router_server + '/rpi-notification/', json={
+        'team': team_data['name'],
+        'message': 'You lost.' if winning_label is None else ('You won with : \'%s\'' % winning_label),
+        'has_won': winning_label is not None
+    })
 
     if response.status_code != 200:
         return json_error('Le routeur erreur lors de contact de la route /rpi-notification/ pour callback retour visuel.')
