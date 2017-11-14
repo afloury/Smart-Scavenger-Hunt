@@ -7,11 +7,6 @@ Send the picture at the delivery point to check if you have won this mission
 
 ***
 
-## Requires authentication
-**[OAuth][]**
-
-***
-
 ## Headers
 Essential information:
 **In the header request**
