@@ -5,19 +5,21 @@ import KeychainSwift
 
 class API {
     
-    var urlBaseLocationRestriction = ""//"http://172.30.1.208:5002/"
-    var urlBaseRouter = ""//"http://172.30.1.208:5001/"
+    var urlBaseLocationRestriction = "" //"http://172.30.1.208:5002/"
+    var urlBaseRouter = "" //"http://172.30.1.208:5001/"
     let keychain = KeychainSwift()
+    var token = ""
     
     init() {
         self.urlBaseLocationRestriction = UserDefaults.standard.string(forKey: "location_restriction") ?? "vide"
         self.urlBaseRouter = UserDefaults.standard.string(forKey: "router") ?? "vide router"
-        print("urlBaseLocationRestriction: \(urlBaseLocationRestriction)")
-        print("urlBaseRouter: \(urlBaseRouter)")
+        if let tokenKeychain = keychain.get("token") {
+            token = tokenKeychain
+        }
     }
     
     
-    func sendPhoto(token: String, imageData: Data, completion: @escaping (_ result: String)->()) {
+    func sendPhoto(imageData: Data, completion: @escaping (_ result: String)->()) {
         let headers: HTTPHeaders = [
             "Authentication": token
         ]
@@ -44,7 +46,7 @@ class API {
         }
     }
     
-    func getMission(lrID: String, token: String, completion: @escaping (_ result: [String])->()) {
+    func getMission(lrID: String, completion: @escaping (_ result: [String])->()) {
         let headers = [
             "X-SmartScavengerHunt-LRID": lrID,
             "Authentication": token

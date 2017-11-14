@@ -22,9 +22,9 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     var idRegion = ""
     
     
-    func getMission(lrID: String, token: String) {
+    func getMission(lrID: String) {
         if let home = tabBarController?.viewControllers![0] as? HomeViewController {
-            api.getMission(lrID: lrID, token: token, completion: { (items) in
+            api.getMission(lrID: lrID, completion: { (items) in
                 home.hadMission = true
                 home.items = items
                 self.tabBarController?.selectedIndex = 0
@@ -101,7 +101,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
             case(_, "inscription_retrait"):
                 print("Déclencher code pour retirer mission")
                 message += "retrait"
-                getMission(lrID: lrID, token: token_equipe_present!)
+                getMission(lrID: lrID)
                 break
             case (_, _):
                 // wtf
@@ -174,7 +174,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
                 displayRegisterView(lrID: lrID)
             }
             if pointIdentifier == "inscription_retrait" && token_equipe_present != nil {
-                getMission(lrID: lrID, token: token_equipe_present!)
+                getMission(lrID: lrID)
             }
         } else {
             messageLabel.text = "Identifiant"

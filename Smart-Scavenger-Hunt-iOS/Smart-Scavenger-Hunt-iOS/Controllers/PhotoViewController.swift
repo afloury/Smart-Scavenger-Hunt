@@ -3,7 +3,6 @@ import AVFoundation
 import Alamofire
 import SwiftyJSON
 import Photos
-import KeychainSwift
 
 class PhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AVCaptureMetadataOutputObjectsDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, CLLocationManagerDelegate {
     
@@ -16,7 +15,6 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     var latitude = 0.0
     var longitude = 0.0
     var listenNextLocation = false
-    let keychain = KeychainSwift()
     let api = API()
     
     override func viewDidLoad() {
@@ -81,13 +79,9 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
             Alert.show(controller: self, message: "Il faut prendre une photo avant de pouvoir l'envoyer.")
             return
         }
-        guard let token = keychain.get("token") else {
-            Alert.show(controller: self, message: "Connectez-vous")
-            return
-        }
         let resizedImage = imageTaken.resized(toWidth: 800)
         let imageData = UIImageJPEGRepresentation(resizedImage!, 0.75)!
-        api.sendPhoto(token: token, imageData: imageData, completion: { (response) in
+        api.sendPhoto(imageData: imageData, completion: { (response) in
             Alert.show(controller: self, message: response)
         })
     }
