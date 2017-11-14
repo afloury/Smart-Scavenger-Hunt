@@ -12,8 +12,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     var previewLayer:CALayer!
     var captureDevice:AVCaptureDevice!
     let locationManager = CLLocationManager()
-    var urlBaseLocationRestriction = "http://172.30.1.208:5002/"
-    var urlBaseRouter = "http://172.30.1.208:5001/"
+    let api = API()
     var registerViewController : RegisterTeamViewController!
 
     var uuidWithdrawal = ""
@@ -22,35 +21,14 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     var regions = [CLBeaconRegion]()
     var idRegion = ""
     
-    func loadUUID() {
-        Alamofire.request("\(urlBaseLocationRestriction)uuid/").responseJSON { response in
-            if let json = response.result.value {
-                let jsonObject = JSON(json)
-                self.uuidDelivery = jsonObject["depot"].stringValue
-                self.uuidWithdrawal = jsonObject["inscription_retrait"].stringValue
-                self.initBeacon()
-            }
-        }
-    }
     
     func getMission(lrID: String, token: String) {
         if let home = tabBarController?.viewControllers![0] as? HomeViewController {
-            let headers = [
-                "X-SmartScavengerHunt-LRID": lrID,
-                "Authentication": token
-            ]
-            Alamofire.request("\(urlBaseRouter)mission/", headers: headers).responseJSON { response in
-                if let json = response.result.value {
-                    let jsonObject = JSON(json)
-                    var items = [String]()
-                    for element in jsonObject.arrayValue {
-                        items.append(element.stringValue)
-                    }
-                    home.hadMission = true
-                    home.items = items
-                    self.tabBarController?.selectedIndex = 0
-                }
-            }
+            api.getMission(lrID: lrID, token: token, completion: { (items) in
+                home.hadMission = true
+                home.items = items
+                self.tabBarController?.selectedIndex = 0
+            })
         }
     }
     
@@ -84,14 +62,6 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         self.view.addSubview(card)
     }
     
-    func displayAlert(message: String, actionTitle: String = "Ok") {
-        let alertController = UIAlertController.init(title: nil, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction.init(title: actionTitle, style: .default, handler: {(alert: UIAlertAction!) in
-        })
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         print("")
         beacons.forEach({ (beacon) in
@@ -107,7 +77,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
                 if idRegion == region.identifier {
                     idRegion = region.identifier
                     message += "you have to go to the registration point first"
-                    displayAlert(message: message)
+                    Alert.show(controller: self, message: message)
                     self.regions.forEach { regionBeacon in
                         locationManager.stopRangingBeacons(in: regionBeacon)
                     }
@@ -182,41 +152,30 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         // Get the metadata object.
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         let token_equipe_present = keychain.get("token")
-        
         if metadataObj.type == .qr && metadataObj.stringValue != nil {
             stopSessionQrCode()
-            
             messageLabel.text = metadataObj.stringValue!
-            
             guard let raw_qr_code = metadataObj.stringValue else {
-                displayAlert(message: "Problème")
+                Alert.show(controller: self, message: "Problème")
                 return
             }
-            
             if raw_qr_code.range(of: ":") == nil {
-                displayAlert(message: "QR-Code invalide (1)")
+                Alert.show(controller: self, message: "QR-Code invalide (1)")
                 return
             }
-        
             let metadataSplitted = raw_qr_code.split(separator: ":").map(String.init)
             let pointIdentifier = metadataSplitted[0]
             let lrID = metadataSplitted[1]
             
             if pointIdentifier != "inscription_retrait" && pointIdentifier != "depot" {
-                displayAlert(message: "QR-Code invalide (2)")
+                Alert.show(controller: self, message: "QR-Code invalide (2)")
             }
-            
             if pointIdentifier == "inscription_retrait" && token_equipe_present == nil {
                 displayRegisterView(lrID: lrID)
             }
-            
             if pointIdentifier == "inscription_retrait" && token_equipe_present != nil {
                 getMission(lrID: lrID, token: token_equipe_present!)
             }
-            
-            
-            //displayAlert(message: "Point scanné : " + explode_test[0] + ", LRID=" + explode_test[1])
-            
         } else {
             messageLabel.text = "Identifiant"
         }
@@ -234,22 +193,10 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         self.previewLayer = previewLayer
         self.view.layer.addSublayer(self.previewLayer)
         self.previewLayer.frame = self.view.layer.frame
-        //CONSTRAINTS
-        //self.previewLayer.translatesAutoresizingMaskIntoConstraints = false
-        /*let horizontalConstraint = NSLayoutConstraint(item: self.previewLayer, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-        let leadConstraint = NSLayoutConstraint(item: self.previewLayer, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 20)
-        //let trailingConstraint = NSLayoutConstraint(item: self.previewLayer, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 20)
-        let topConstraint = NSLayoutConstraint(item: self.previewLayer, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 20)
-        let bottomConstraint = NSLayoutConstraint(item: self.previewLayer, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 20)
-        view.addConstraints([horizontalConstraint, leadConstraint, topConstraint, bottomConstraint])
-        */
-        
         captureSession.startRunning()
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.videoSettings = [((kCVPixelBufferPixelFormatTypeKey as NSString) as String):NSNumber(value:kCVPixelFormatType_32BGRA)]
-        
         dataOutput.alwaysDiscardsLateVideoFrames = true
-        
         if captureSession.canAddOutput(dataOutput) {
             captureSession.addOutput(dataOutput)
         }
@@ -263,12 +210,12 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         self.captureSession = nil
     }
     
-    func captureOutput(_ captureOutput: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        
-    }
-    
     @IBAction func SearchBeacon(_ sender: Any) {
-        loadUUID()
+        api.loadUUID { (uuidDelivery, uuidWithdrawal) in
+            self.uuidDelivery = uuidDelivery
+            self.uuidWithdrawal = uuidWithdrawal
+            self.initBeacon()
+        }
     }
     
     @IBAction func searchQRCode(_ sender: Any) {

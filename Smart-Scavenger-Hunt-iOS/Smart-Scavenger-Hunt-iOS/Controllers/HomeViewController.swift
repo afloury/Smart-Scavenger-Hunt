@@ -55,5 +55,4 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.textLabel?.text = items[indexPath.row]
         return cell
     }
-    
 }
