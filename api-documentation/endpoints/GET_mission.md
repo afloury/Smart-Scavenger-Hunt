@@ -21,6 +21,12 @@ Essential information:
 
 ***
 
+## Parameters
+None
+
+
+***
+
 ## Return format
 Status code 200 OK along with a JSON array containing the list of object to search
 
