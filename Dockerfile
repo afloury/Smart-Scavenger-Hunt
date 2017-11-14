@@ -17,5 +17,8 @@ CMD [\
     "--workers", "8", \
     "--worker-connections", "2000", \
 \
+    "--log-level", "debug", \
+    "--capture-output", \
+\
     "main:app" \
 ]
