@@ -97,7 +97,7 @@ ________
 - Afficher le bon nom du mode du qr_code en tête de page
 - Amélioration du code iOS
   - Structure du projet
-  - Utilisation des alerte simplifié
+  - Utilisation des alertes simplifiées
   - Centraliser les appels à l'API
   - Expérience utilisateur
 - Settings de l'app pour configurer:
