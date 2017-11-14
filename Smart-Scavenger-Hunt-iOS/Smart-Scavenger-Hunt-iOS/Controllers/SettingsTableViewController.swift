@@ -6,14 +6,9 @@ class SettingsTableViewController: UITableViewController {
     let keychain = KeychainSwift()
     var numberOfSection = 1
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if let token = keychain.get("token") {
+        if keychain.get("token") != nil {
             numberOfSection = 2
             tableView.reloadData()
         } else {
@@ -23,14 +18,11 @@ class SettingsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return numberOfSection
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if section == 0 {
             return 3
         }
@@ -43,6 +35,9 @@ class SettingsTableViewController: UITableViewController {
             keychain.clear()
             numberOfSection = 1
             tableView.reloadData()
+            if let home = tabBarController?.viewControllers![0] as? HomeViewController {
+                home.hadMission = false
+            }
             tabBarController?.selectedIndex = 0
         }
     }

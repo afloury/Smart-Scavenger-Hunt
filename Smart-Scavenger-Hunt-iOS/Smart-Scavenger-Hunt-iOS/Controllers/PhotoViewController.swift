@@ -11,41 +11,33 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     @IBOutlet weak var imageTake: UIImageView!
     var imagePicker: UIImagePickerController!
     var captureSession:AVCaptureSession!
-    var urlBaseLocationRestriction = "http://172.30.1.208:5002/"
-    var urlBaseRouter = "http://172.30.1.208:5001/"
     let locationManager = CLLocationManager()
     
     var latitude = 0.0
     var longitude = 0.0
     var listenNextLocation = false
     let keychain = KeychainSwift()
-
+    let api = API()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        takePhotoButton.setTitle("Géolocalisation en cours...", for: .disabled)
         // Do any additional setup after loading the view.
         prepareCaptureSession()
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
-        
         // For use in foreground
         self.locationManager.requestWhenInUseAuthorization()
-        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if listenNextLocation {
             listenNextLocation = false
-            takePhotoButton.setTitle("Take Photo", for: .normal)
             let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-            print("locations = \(locValue.latitude) \(locValue.longitude)")
             latitude = locValue.latitude
             longitude = locValue.longitude
         }
@@ -67,17 +59,11 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
             print(error.localizedDescription)
         }
     }
-
+    
     //MARK: - Take image
     @IBAction func takePhoto(_ sender: UIButton) {
-        //takePhotoButton.isEnabled = false
         if !UIImagePickerController.isSourceTypeAvailable(.camera){
-            let alertController = UIAlertController.init(title: nil, message: "Device has no camera.", preferredStyle: .alert)
-            let okAction = UIAlertAction.init(title: "Alright", style: .default, handler: {(alert: UIAlertAction!) in
-                //self.takePhotoButton.isEnabled = true
-            })
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            Alert.show(controller: self, message: "Device has no camera.", buttonTitle: "Alright")
         } else {
             imagePicker =  UIImagePickerController()
             imagePicker.delegate = self
@@ -91,49 +77,24 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     }
     
     func sendPhoto() {
-        if imageTake.image != nil {
-            let resizedImage = imageTake.image!.resized(toWidth: 800)
-            let imageData = UIImageJPEGRepresentation(resizedImage!, 0.75)!
-            
-            guard let token = keychain.get("token") else {
-                let alertController = UIAlertController.init(title: nil, message: "Connectez-vous", preferredStyle: .alert)
-                let okAction = UIAlertAction.init(title: "Ok", style: .default, handler: {(alert: UIAlertAction!) in
-                })
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-                return
-            }
-            
-            let headers: HTTPHeaders = [
-                "Authentication": token
-            ]
-            Alamofire.upload(imageData, to: "\(urlBaseRouter)picture/", headers: headers).responseJSON { response in
-                //debugPrint(response)
-                if let json = response.result.value {
-                    print("JSON: \(json)")
-                    let jsonObject = JSON(json)
-                    let message =  jsonObject["message"].stringValue
-                    let alertController = UIAlertController.init(title: nil, message: message, preferredStyle: .alert)
-                    let okAction = UIAlertAction.init(title: "Ok", style: .default, handler: {(alert: UIAlertAction!) in
-                    })
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
-                }
-            }
-        } else {
-            let alertController = UIAlertController.init(title: nil, message: "Il faut prendre une photo avant de pouvoir l'envoyer.", preferredStyle: .alert)
-            let okAction = UIAlertAction.init(title: "Ok", style: .default, handler: {(alert: UIAlertAction!) in
-            })
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+        guard let imageTaken = imageTake.image else {
+            Alert.show(controller: self, message: "Il faut prendre une photo avant de pouvoir l'envoyer.")
+            return
         }
+        guard let token = keychain.get("token") else {
+            Alert.show(controller: self, message: "Connectez-vous")
+            return
+        }
+        let resizedImage = imageTaken.resized(toWidth: 800)
+        let imageData = UIImageJPEGRepresentation(resizedImage!, 0.75)!
+        api.sendPhoto(token: token, imageData: imageData, completion: { (response) in
+            Alert.show(controller: self, message: response)
+        })
     }
     
     //MARK: - Done image capture here
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
         imageTake.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        listenNextLocation = true
-        takePhotoButton.setTitle("Retake Photo", for: .normal)
-    }
+        listenNextLocation = true    }
 }

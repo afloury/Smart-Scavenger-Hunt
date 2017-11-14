@@ -22,23 +22,10 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     var regions = [CLBeaconRegion]()
     var idRegion = ""
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-    }
-    
     func loadUUID() {
-        // 172.30.1.208:5002/uuid/
         Alamofire.request("\(urlBaseLocationRestriction)uuid/").responseJSON { response in
-            //debugPrint(response)
-            
             if let json = response.result.value {
-                print("JSON: \(json)")
-                
                 let jsonObject = JSON(json)
-                let jsonArray = jsonObject.arrayValue
-                print(jsonObject)
                 self.uuidDelivery = jsonObject["depot"].stringValue
                 self.uuidWithdrawal = jsonObject["inscription_retrait"].stringValue
                 self.initBeacon()
@@ -48,46 +35,32 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     
     func getMission(lrID: String, token: String) {
         if let home = tabBarController?.viewControllers![0] as? HomeViewController {
-            
             let headers = [
                 "X-SmartScavengerHunt-LRID": lrID,
                 "Authentication": token
             ]
-            
             Alamofire.request("\(urlBaseRouter)mission/", headers: headers).responseJSON { response in
-                //debugPrint(response)
-                
                 if let json = response.result.value {
-                    print("JSON: \(json)")
-                    print(type(of: json))
                     let jsonObject = JSON(json)
-                    print(jsonObject.arrayValue[0].stringValue)
-                    
                     var items = [String]()
                     for element in jsonObject.arrayValue {
                         items.append(element.stringValue)
                     }
-                    
                     home.hadMission = true
                     home.items = items
                     self.tabBarController?.selectedIndex = 0
                 }
             }
-            
-            
-            
         }
     }
     
     func initBeacon() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
-        
         let uuidW = UUID(uuidString: self.uuidWithdrawal)!
         let uuidD = UUID(uuidString: self.uuidDelivery)!
         regions = [CLBeaconRegion(proximityUUID: uuidD, identifier: "depot"),
                        CLBeaconRegion(proximityUUID: uuidW, identifier: "inscription_retrait")]
-        
         regions.forEach { region in
             region.notifyOnExit = true
             region.notifyOnEntry = true
@@ -122,6 +95,8 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         print("")
         beacons.forEach({ (beacon) in
+            print("dump")
+            dump(beacon)
             if ![1, 2, 3].contains(beacon.proximity.rawValue) { return }
             let lrID = String(format:"%04x", beacon.major as! UInt32) + String(format:"%04x", beacon.minor as! UInt32)
             var message = ""
