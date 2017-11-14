@@ -26,12 +26,12 @@ Essential information:
 ## Parameters
 Essential information:
 
-- **Data** — Datas picture
+- **Data** — The raw content of the picture
 
 ***
 
 ## Return format
-Status code 201 OK along with a JSON object containing the the result of the mission
+Status code 201 OK along with a JSON object containing a message to display to the user
 
 
 ***
