@@ -18,8 +18,8 @@ Essential information:
 
 - **Authentication** — Token get from the registration
 - **X-SmartScavengerHunt-LRID** — Location Restriction Identifier from QR Code or Beacon
-- **X-SmartScavengerHunt-lat** — Location Restriction Identifier from QR Code or Beacon
-- **X-SmartScavengerHunt-long** — Location Restriction Identifier from QR Code or Beacon
+- **X-SmartScavengerHunt-lat** — Latitude of the phone when the photo is taken
+- **X-SmartScavengerHunt-long** — Longitude of the phone when the photo is taken
 
 ***
 
