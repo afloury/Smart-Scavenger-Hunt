@@ -30,6 +30,9 @@ while True:
     if response.status_code == 200:
         json_data = json.loads(response.content)
 
+        print('%s / %s / %s' % (json_data['uuid'], json_data['major'], json_data['minor']))
+        print('\n\n\n')
+
         ibeacon.set_config(json_data['uuid'], json_data['major'], json_data['minor'])
         sleep_time = json_data['interval_secs']
 
