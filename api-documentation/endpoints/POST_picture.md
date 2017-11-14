@@ -51,9 +51,7 @@ All known errors cause the resource to return HTTP error code header together wi
 **Return**
 ``` json
 {
-    "Result": "Win",
-    "Picture_value": "Cat",
-    "Points": 10
+    "message": "Photo correctement traitée."
 }
 ```
 
