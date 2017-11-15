@@ -49,7 +49,7 @@ When the app is installed, you have to go in the settings of the app and add the
 
 Like this:  
 
-<img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/settings_iOS.PNG" alt="Drawing" width="300px"/>
+<img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/settings_iOS.PNG" alt="Drawing" width="400px"/>
 
 
 ### Setup iBeacon/RPi
@@ -64,7 +64,7 @@ Like this:
 
 Schema Architecture
 
-<img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/schemaArchi.png" alt="Schema Architecture" width="600px"/>
+<img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/schemaArchi.png" alt="Schema Architecture" width="800px"/>
 
 
 
