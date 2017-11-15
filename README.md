@@ -47,7 +47,8 @@ When the app is installed, you have to go in the settings of the app and add the
 - The Router
 - The Location Restriction
 
-Like this:
+Like this:  
+
 ![alt text](https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/settings_iOS_resized.PNG "Settings iOS")
 
 
