@@ -17,15 +17,17 @@ r = redis.StrictRedis(host='redis', port=6379, db=0)
 # Todo: URL paramétrable depuis ENV ?
 location_restriction_server = 'http://location-restriction'
 orchestrator_server = 'http://orchestrator'
+
 copied_headers = ['X-SmartScavengerHunt-LRID', 'Content-Type', 'X-SmartScavengerHunt-lat', 'X-SmartScavengerHunt-long']
 
 
-def routing_to_game(method, route):
-    # Obtention des infos de l'équipe
-    if 'Authentication' not in request.headers:
-        return json_error('HTTP header Authentication should be set to access this route.')
+def routing_to_game(method, route, team_token=None):
+    if team_token is None:
+        # Obtention des infos de l'équipe
+        if 'Authentication' not in request.headers:
+            return json_error('HTTP header Authentication should be set to access this route.')
 
-    team_token = request.headers['Authentication']
+        team_token = request.headers['Authentication']
 
     if r.get('teams') is None or team_token not in json.loads(r.get('teams').decode('utf-8')):
         return json_error('Unknown team token!', 404)
@@ -50,12 +52,12 @@ def routing_to_game(method, route):
         return json_error('Impossible de contacter le container de jeu.')
 
     # Réponse routeur => iOS
-    response = make_response(response.content)
+    headers = {}
     for copied_header in copied_headers:
         if copied_header in response.headers:
-            response.headers[copied_header] = response.headers[copied_header]
+            headers[copied_header] = response.headers[copied_header]
 
-    return response
+    return response.content, response.status_code, headers
 
 
 @app.route('/team/', methods=['POST'])
