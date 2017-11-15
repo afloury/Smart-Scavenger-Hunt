@@ -31,13 +31,23 @@ Based on the scavenger hunt game, the goal is to :
 - A Google Cloud Vision API account
 - Server with Docker and Docker-Compose
 
-## Making your own (Tutorial)
 
 ### Install iOS app on iDevice
 
 ### Configure iOS app (settings ip)
 
-### 
+### Launch server with docker-compose
+
+### Setup iBeacon/RPi
+
+### Setup QR-Code
+
+### Setup visual feedback
+
+
+
+## Making your own (Tutorial)
+
 
 ## Branches
 
