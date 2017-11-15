@@ -8,6 +8,8 @@ RUN python3 -m pip install -r requirements.txt
 ADD src /SmartScavengerHunt_game/
 WORKDIR /SmartScavengerHunt_game/
 
+RUN mkdir /SmartScavengerHunt_game/pictures
+
 EXPOSE 80
 CMD [\
     "gunicorn", \
