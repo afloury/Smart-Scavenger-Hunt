@@ -3,7 +3,7 @@
 
 - Prise de connaissance du sujet
 - Réflexion sur la mise en place de l'architecture
-![alt text](https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/2017-11-06/schema.png "Architecture projet")
+![alt text](https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/schema.png "Architecture projet")
 - Études des services de reconnaissances visuelles Google Cloud Vision et Watson Visual Recognition (choix du service d'IBM car pas besoin de CB)
 - Création d'un projet Watson Visual Recognition pour utiliser l'API d'IBM
 - Analyse des priorités de développement
