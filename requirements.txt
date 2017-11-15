@@ -1,0 +1,7 @@
+gunicorn
+
+Flask
+Flask-Cors
+requests
+
+redis
