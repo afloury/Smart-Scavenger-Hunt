@@ -21,7 +21,10 @@ class API {
     
     func sendPhoto(imageData: Data, completion: @escaping (_ result: String)->()) {
         let headers: HTTPHeaders = [
-            "Authentication": token
+            "Authentication": token,
+            "X-SmartScavengerHunt-LRID": "lrid",
+            "X-SmartScavengerHunt-lat": "",
+            "X-SmartScavengerHunt-long": ""
         ]
         Alamofire.upload(imageData, to: "\(urlBaseRouter)picture/", headers: headers).responseJSON { response in
             //debugPrint(response)
