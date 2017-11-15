@@ -49,7 +49,7 @@ When the app is installed, you have to go in the settings of the app and add the
 
 Like this:  
 
-![alt text](https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/settings_iOS_resized.PNG "Settings iOS")
+![alt text](https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/settings_iOS_resized.PNG =250x "Settings iOS")
 
 
 
