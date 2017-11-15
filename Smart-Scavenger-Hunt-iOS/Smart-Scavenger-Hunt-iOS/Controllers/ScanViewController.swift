@@ -14,13 +14,10 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     let locationManager = CLLocationManager()
     let api = API()
     var registerViewController : RegisterTeamViewController!
-    
     var uuidWithdrawal = ""
     var uuidDelivery = ""
     let keychain = KeychainSwift()
     var regions = [CLBeaconRegion]()
-    //var idRegion = ""
-    
     
     func getMission(lrID: String) {
         if let home = tabBarController?.viewControllers![0] as? HomeViewController {
@@ -66,50 +63,8 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         beacons.forEach({ (beacon) in
             if ![1, 2, 3].contains(beacon.proximity.rawValue) { return }
             let lrID = String(format:"%04x", beacon.major as! UInt32) + String(format:"%04x", beacon.minor as! UInt32)
-            
-            
-            /*switch (token_equipe_present, region.identifier) {
-             case(nil, "depot"):
-             print("Informer l'utilisateur qu'il doit s'inscrire")
-             if idRegion == region.identifier {
-             idRegion = region.identifier
-             message += "you have to go to the registration point first"
-             Alert.show(controller: self, message: message)
-             self.regions.forEach { regionBeacon in
-             locationManager.stopRangingBeacons(in: regionBeacon)
-             }
-             }
-             break
-             case(nil, "inscription_retrait"):
-             print("Déclencher code pour s'inscrire")
-             if idRegion == region.identifier {
-             idRegion = region.identifier
-             message += "inscription"
-             displayRegisterView(lrID: lrID)
-             self.regions.forEach { regionBeacon in
-             locationManager.stopRangingBeacons(in: regionBeacon)
-             }
-             }
-             break
-             case(_, "depot"):
-             print("Déclencher code pour déposer photo")
-             message += "depot"
-             break
-             case(_, "inscription_retrait"):
-             print("Déclencher code pour retirer mission")
-             message += "retrait"
-             getMission(lrID: lrID)
-             break
-             case (_, _):
-             // wtf
-             break
-             }*/
             var message = ""
-            //if idRegion != region.identifier {
-            //idRegion = region.identifier
             message = actByLRID(regionId: region.identifier, lrID: lrID)
-            //}
-            
             message += " => " + String(format:"%04x", beacon.major as! UInt32) + String(format:"%04x", beacon.minor as! UInt32)
             messageLabel.text = message
         })
@@ -127,19 +82,13 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         switch (token, regionId) {
         case(nil, "depot"):
             print("Informer l'utilisateur qu'il doit s'inscrire")
-            //if idRegion == regionId {
-            //idRegion = regionId
             message += "you have to go to the registration point first"
             Alert.show(controller: self, message: message)
-            //}
             break
         case(nil, "inscription_retrait"):
             print("Déclencher code pour s'inscrire")
-            //if idRegion == regionId {
-            //idRegion = regionId
             message += "inscription"
             displayRegisterView(lrID: lrID)
-            //}
             break
         case(_, "depot"):
             print("Déclencher code pour déposer photo")
@@ -210,19 +159,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
             let metadataSplitted = raw_qr_code.split(separator: ":").map(String.init)
             let pointIdentifier = metadataSplitted[0]
             let lrID = metadataSplitted[1]
-            
-            /*if pointIdentifier != "inscription_retrait" && pointIdentifier != "depot" {
-             Alert.show(controller: self, message: "QR-Code invalide (2)")
-             }
-             if pointIdentifier == "inscription_retrait" && token_equipe_present == nil {
-             displayRegisterView(lrID: lrID)
-             }
-             if pointIdentifier == "inscription_retrait" && token_equipe_present != nil {
-             getMission(lrID: lrID)
-             }*/
-            
             messageLabel.text = actByLRID(regionId: pointIdentifier, lrID: lrID)
-            
         } else {
             messageLabel.text = "Identifiant"
         }

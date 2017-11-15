@@ -13,12 +13,18 @@ class API {
     init() {
         self.urlBaseLocationRestriction = UserDefaults.standard.string(forKey: "location_restriction") ?? "vide"
         self.urlBaseRouter = UserDefaults.standard.string(forKey: "router") ?? "vide router"
+    }
+    
+    func getTokenFromKeychain() {
         if let tokenKeychain = keychain.get("token") {
             token = tokenKeychain
+        } else {
+            print("no token in keychain")
         }
     }
     
     func sendPhoto(lrID: String, lat: String, long: String, imageData: Data, completion: @escaping (_ result: String)->()) {
+        getTokenFromKeychain()
         let headers: HTTPHeaders = [
             "Authentication": token,
             "X-SmartScavengerHunt-LRID": lrID,
@@ -51,6 +57,7 @@ class API {
     }
     
     func getMission(lrID: String, completion: @escaping (_ result: [String])->()) {
+        getTokenFromKeychain()
         let headers = [
             "X-SmartScavengerHunt-LRID": lrID,
             "Authentication": token
