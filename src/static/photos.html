@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/jquery/js/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+    </style>
+</head>
+
+<body>
+    <pre id="star_wars"></pre>
+    <script type="text/javascript">
+        function parseURLParams(url) {
+            var queryStart = url.indexOf("?") + 1,
+                queryEnd = url.indexOf("#") + 1 || url.length + 1,
+                query = url.slice(queryStart, queryEnd - 1),
+                pairs = query.replace(/\+/g, " ").split("&"),
+                parms = {}, i, n, v, nv;
+
+            if (query === url || query === "") return;
+
+            for (i = 0; i < pairs.length; i++) {
+                nv = pairs[i].split("=", 2);
+                n = decodeURIComponent(nv[0]);
+                v = decodeURIComponent(nv[1]);
+
+                if (!parms.hasOwnProperty(n)) parms[n] = [];
+                parms[n].push(nv.length === 2 ? v : null);
+            }
+            return parms;
+        }
+
+        $(function () {
+            var currentUrl = window.location.href;
+            var urlParams = parseURLParams(currentUrl);
+            $.ajax({
+                //url: 'http://docker.nicnl.com:5003/team/'+urlParams+'/picture/',
+                url: 'http://docker.nicnl.com:5003/team/4fb08de6-7f69-4eed-bfa4-512b7a40402d/picture/',
+                method: 'GET',
+                error: function (data) {
+                    alert('ERREUR');
+                },
+                success: function (data) {
+                    var tr;
+                    var div;
+                    for (var i = 0; i < data.length; i++) {
+                        tr = $('<tr/>');
+                        tr.append("<td>" + data[i].picture_uuid + "</td>");
+                        div = $("<p></p>");
+                        div.append("<h3>Image " + data[i].picture_uuid + "</h3>")
+                        div.append("<table id=\"tab" + i + "\">");
+                        //var tr2;
+                        for (var j = 0; j < data[i].labels.length; j++) {
+                            div.append('<tr/>');
+                            div.append("<td>" + data[i].labels[j].label + "</td>");
+                            div.append("<td>" + data[i].labels[j].score + "</td>");
+                            $('#tab' + i).append(div);
+                        }
+                        div.append("</table>");
+                        div.append("<br>");
+                        div.append("<br>");
+                        $('#diva').append(div);
+                        //tr.append("<td><a href=\"photos.html?uuid=" + data[i].uuid + "\">photos</a></td>");
+                        tr.append("<tr><td>ok</td><td>ok</td></tr>");
+                        tr.append("<td>" + data[i].position['lat'] + "</td>");
+                        if (data[i].winning_label == null) {
+                            tr.append("<td>Photo not match</td>");
+                        } else {
+                            tr.append("<td>" + data[i].winning_label + "</td>");
+                        }
+                        $('#tabBase').append(tr);
+                    }
+                }
+            })
+        });
+
+        $(function () {
+            var currentUrl = window.location.href;
+            urlParams = parseURLParams(currentUrl);
+            $('#star_wars').text(urlParams['uuid']);
+        });
+    </script>
+    <table id="tabBase">
+        <tr>
+            <th>Picture uuid</th>
+            <th>Labels</th>
+            <th>position</th>
+            <th>winning_label</th>
+
+        </tr>
+    </table>
+    <div id="diva"></div>
+</body>
+
+</html>
