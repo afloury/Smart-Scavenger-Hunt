@@ -31,12 +31,25 @@ Based on the scavenger hunt game, the goal is to :
 - A Google Cloud Vision API account
 - Server with Docker and Docker-Compose
 
+### Launch server with docker-compose
 
-### Install iOS app on iDevice
+
+### Install iOS app on iPhone
+
+- Open the project in Xcode
+- Connect your iPhone to your Mac
+- Select your device in the target list
+- Launch the App
 
 ### Configure iOS app (settings ip)
 
-### Launch server with docker-compose
+When the app is installed, you have to go in the settings of the app and add the address of:
+- The Router
+- The Location Restriction
+
+Like this:
+
+
 
 ### Setup iBeacon/RPi
 
