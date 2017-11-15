@@ -7,11 +7,6 @@ Send the picture at the delivery point to check if you have won this mission
 
 ***
 
-## Requires authentication
-**[OAuth][]**
-
-***
-
 ## Headers
 Essential information:
 **In the header request**
@@ -26,12 +21,12 @@ Essential information:
 ## Parameters
 Essential information:
 
-- **Data** — Datas picture
+- **Data** — The raw content of the picture
 
 ***
 
 ## Return format
-Status code 201 OK along with a JSON object containing the the result of the mission
+Status code 201 OK along with a JSON object containing a message to display to the user
 
 
 ***
@@ -51,9 +46,7 @@ All known errors cause the resource to return HTTP error code header together wi
 **Return**
 ``` json
 {
-    "Result": "Win",
-    "Picture_value": "Cat",
-    "Points": 10
+    "message": "Photo correctement traitée."
 }
 ```
 
