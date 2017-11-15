@@ -1,10 +1,10 @@
 import requests
-
+import json
 
 response = requests.get(
     url='http://localhost:5001/get_team_data/',
     headers={
-        'Authentication': 'f65dece1-05fa-46fd-bf6c-43015d08c650'
+        'Authentication': '486d2f14-435f-474c-b2a8-697c2e9830e7'
     }
 )
 

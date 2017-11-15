@@ -38,25 +38,25 @@
         <div id="container">
             <h1 id="team_name">Connexion en cours</h1>
             <h2 id="message">Veuillez patienter...</h2>
-            <h2 id="points"></h2>
+            <h2 id="score"></h2>
         </div>
 
         <script type="text/javascript">
             $(function() {
                 var polling_url = 'http://127.0.0.1:5001/rpi-notification/';
 
-                function display_notification(team, message, points, has_won) {
+                function display_notification(team, message, score, has_won) {
                     $('#container').addClass(has_won ? 'won' : 'lost');
 
                     $('#team_name').text(team);
                     $('#message').text(message);
-                    $('#points').text(points);
+                    $('#score').text(score);
                 }
 
                 function clear_notification() {
                     $('#team_name').text('');
                     $('#message').text('');
-                    $('#points').text('');
+                    $('#score').text('');
 
                     $('#container').removeClass();
                 }
@@ -97,7 +97,7 @@
                             display_notification(
                                 data[0]['team'],
                                 data[0]['message'],
-                                data[0]['points'],
+                                data[0]['score'],
                                 data[0]['has_won']
                             );
 

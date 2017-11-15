@@ -97,7 +97,7 @@ def register_team():
     r.set('team-' + team_uuid, json.dumps({
         'name': team_name,
         'container': create_response_data['container_name'],
-        'points': 0,
+        'score': 0,
         'pictures': []
     }).encode('utf-8'))
 
@@ -152,7 +152,7 @@ def post_rpi_notification():
         'team': data['team'],
         'message': data['message'],
         'has_won': data['has_won'],
-        'points': data['points']
+        'score': data['score']
     }]
 
     r.set('rpi_notifications', json.dumps(notifications).encode('utf-8'))
