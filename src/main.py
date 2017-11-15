@@ -17,7 +17,7 @@ r = redis.StrictRedis(host='redis', port=6379, db=0)
 # Todo: URL paramétrable depuis ENV ?
 location_restriction_server = 'http://location-restriction'
 orchestrator_server = 'http://orchestrator'
-copied_headers = ['X-SmartScavengerHunt-LRID', 'Content-Type']
+copied_headers = ['X-SmartScavengerHunt-LRID', 'Content-Type', 'X-SmartScavengerHunt-lat', 'X-SmartScavengerHunt-long']
 
 
 def routing_to_game(method, route):
@@ -51,7 +51,7 @@ def routing_to_game(method, route):
 
     # Réponse routeur => iOS
     response = make_response(response.content)
-    for copied_header in ['X-SmartScavengerHunt-LRID', 'Content-Type']:
+    for copied_header in copied_headers:
         if copied_header in response.headers:
             response.headers[copied_header] = response.headers[copied_header]
 
@@ -96,7 +96,9 @@ def register_team():
 
     r.set('team-' + team_uuid, json.dumps({
         'name': team_name,
-        'container': create_response_data['container_name']
+        'container': create_response_data['container_name'],
+        'points': 0,
+        'pictures': []
     }).encode('utf-8'))
 
     # Inscription de l'équipe avec lock au cas-où
@@ -121,6 +123,11 @@ def register_team():
 @app.route('/mission/', methods=['GET'])
 def get_mission():
     return routing_to_game('get', '/mission/')
+
+
+@app.route('/get_team_data/', methods=['GET'])
+def get_team_data():
+    return routing_to_game('get', '/get_team_data/')
 
 
 @app.route('/picture/', methods=['POST'])

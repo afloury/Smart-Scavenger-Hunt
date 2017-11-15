@@ -1,19 +1,12 @@
 import requests
 
-with open('picture.jpeg', 'rb') as file:
-    data = file.read()
 
-    response = requests.post(
-        url='http://localhost:5001/picture/',
-        headers={
-            'Authentication': '871b2e18-bb74-429a-8b3a-176571e565b9'
-        },
-        data=data
-    )
+response = requests.get(
+    url='http://localhost:5001/get_team_data/',
+    headers={
+        'Authentication': 'f65dece1-05fa-46fd-bf6c-43015d08c650'
+    }
+)
 
-    print(response.status_code)
-    print(response.content)
-
-    test = open('output.html', 'wb')
-    test.write(response.content)
-    test.close()
+print(response.status_code)
+print(response.content)
