@@ -29,6 +29,9 @@ def create_container():
 
     return json_data(scores)
 
+    # Trier du plus grand au plus petit
+    scores.sort(key=lambda x: x['score'], reverse=True)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
