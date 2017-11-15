@@ -48,6 +48,27 @@ def get_or_create_mission():
     return team_data['mission']
 
 
+@app.route('/picture/', methods=['GET'])
+def get_pictures():
+    team_data = json.loads(r.get('team-' + os.environ['TEAM_UUID']).decode('utf-8'))
+    return json_data(team_data['pictures'])
+
+
+@app.route('/picture/<picture_uuid>/', methods=['GET'])
+def get_picture_from_uuid(picture_uuid):
+    picture_path = 'pictures/%s.jpg' % picture_uuid
+
+    if not os.path.isfile(picture_path):
+        return json_error('Unknown file', 404)
+
+    with open(picture_path, 'rb') as picture_file:
+        file_content = picture_file.read()
+
+    return file_content, 200, {
+        'Content-Type': 'image/jpeg'
+    }
+
+
 @app.route('/picture/', methods=['POST'])
 def google_vision():
     # Préparation des données
