@@ -108,3 +108,25 @@ ________
 - Calcul des points dans conteneur game (penser à utiliser redis)
 - Empêcher retirage d'un objet déjà pris en photo avant
 - Affichage des points sur retour visuel
+
+________
+
+## Jour 8 (2017-11-15)
+
+- Envoi de la position GPS au serveur en même temps que la photo
+- Enregistrement de la photo dans le conteneur game + sa géolocalisation dans redis
+- Permettre le dépôt d'une photo qu'avec le beacon ou le qr-code de dépôt
+- Envoi du LRID lors de la requête alamofire de POST de la photo
+- Début rédaction README.MD avec "how to make your own" et infos
+- Route d'abandon d'une mission avec pénalité de score dans conteneur game
+- Supervision API : 
+  - route pour scores (nom des teams + leurs scores décroissants)
+  - route pour liste des teams (uuid + nom)
+  - route pour liste des photos prises par une team et les infos détaillées des photos
+  - route pour obtenir le fichier jpeg d'une des photos d'une team
+- Supervision WEB :
+  - scores par équipes
+  - liste des photos d'une équipe
+  - détails d'une photo d'une équipe
+  
+- 
