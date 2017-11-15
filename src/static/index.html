@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/jquery/js/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+    </style>
+</head>
+
+<body>
+    <pre id="star_wars"></pre>
+    <script type="text/javascript">
+
+        /*var json =
+            [
+                {
+                    "uuid": "d2bdc372-5efa-4dbd-b351-b4f402950221",
+                    "name": "team rouge", "score": -5
+                }, {
+                    "uuid": "017ffad3-d21d-4c8a-96aa-d562d7d12379",
+                    "name": "team verte", "score": 5
+                }
+            ];
+
+        JSON.stringify(json);*/
+
+        $(function () {
+            $.ajax({
+                url: 'http://docker.nicnl.com:5003/score/',
+                method: 'GET',
+                error: function (data) {
+                    alert('ERREUR');
+                },
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        tr = $('<tr/>');
+                        tr.append("<td>" + data[i].name + "</td>");
+                        tr.append("<td>" + data[i].score + "</td>");
+                        tr.append("<td><a href=\"photos.html?uuid=" + data[i].uuid + "\">photos</a></td>");
+                        $('table').append(tr);
+                    }
+                }
+            })
+        });
+    </script>
+    <table>
+        <tr>
+            <th>Team</th>
+            <th>Score</th>
+            <th>Photos</th>
+        </tr>
+    </table>
+</body>
+
+</html>
