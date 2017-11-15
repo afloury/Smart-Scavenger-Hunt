@@ -30,9 +30,6 @@ class RegisterTeamViewController: UIViewController {
     }
     
     @IBAction func cancelView(_ sender: Any) {
-        if let superView = self.view.superview as? ScanViewController {
-            superView.idRegion = ""
-        }
         self.view.removeFromSuperview()
     }
 }
