@@ -64,7 +64,7 @@ Like this:
 
 Schema Architecture
 
-<img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/schemaArchi.PNG" alt="Drawing" width="600px"/>
+<img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/schemaArchi.PNG" alt="Schema Architecture" width="600px"/>
 
 
 
