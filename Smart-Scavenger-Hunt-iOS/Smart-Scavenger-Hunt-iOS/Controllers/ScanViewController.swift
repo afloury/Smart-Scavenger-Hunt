@@ -6,7 +6,7 @@ import SwiftyJSON
 import KeychainSwift
 
 class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCaptureMetadataOutputObjectsDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, CLLocationManagerDelegate {
-
+    
     @IBOutlet weak var messageLabel: UILabel!
     var captureSession:AVCaptureSession!
     var previewLayer:CALayer!
@@ -14,12 +14,12 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     let locationManager = CLLocationManager()
     let api = API()
     var registerViewController : RegisterTeamViewController!
-
+    
     var uuidWithdrawal = ""
     var uuidDelivery = ""
     let keychain = KeychainSwift()
     var regions = [CLBeaconRegion]()
-    var idRegion = ""
+    //var idRegion = ""
     
     
     func getMission(lrID: String) {
@@ -38,7 +38,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         let uuidW = UUID(uuidString: self.uuidWithdrawal)!
         let uuidD = UUID(uuidString: self.uuidDelivery)!
         regions = [CLBeaconRegion(proximityUUID: uuidD, identifier: "depot"),
-                       CLBeaconRegion(proximityUUID: uuidW, identifier: "inscription_retrait")]
+                   CLBeaconRegion(proximityUUID: uuidW, identifier: "inscription_retrait")]
         regions.forEach { region in
             region.notifyOnExit = true
             region.notifyOnEntry = true
@@ -69,47 +69,56 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
             
             
             /*switch (token_equipe_present, region.identifier) {
-            case(nil, "depot"):
-                print("Informer l'utilisateur qu'il doit s'inscrire")
-                if idRegion == region.identifier {
-                    idRegion = region.identifier
-                    message += "you have to go to the registration point first"
-                    Alert.show(controller: self, message: message)
-                    self.regions.forEach { regionBeacon in
-                        locationManager.stopRangingBeacons(in: regionBeacon)
-                    }
-                }
-                break
-            case(nil, "inscription_retrait"):
-                print("Déclencher code pour s'inscrire")
-                if idRegion == region.identifier {
-                    idRegion = region.identifier
-                    message += "inscription"
-                    displayRegisterView(lrID: lrID)
-                    self.regions.forEach { regionBeacon in
-                        locationManager.stopRangingBeacons(in: regionBeacon)
-                    }
-                }
-                break
-            case(_, "depot"):
-                print("Déclencher code pour déposer photo")
-                message += "depot"
-                break
-            case(_, "inscription_retrait"):
-                print("Déclencher code pour retirer mission")
-                message += "retrait"
-                getMission(lrID: lrID)
-                break
-            case (_, _):
-                // wtf
-                break
-            }*/
-            
-            var message = actByLRID(regionId: region.identifier, lrID: lrID)
+             case(nil, "depot"):
+             print("Informer l'utilisateur qu'il doit s'inscrire")
+             if idRegion == region.identifier {
+             idRegion = region.identifier
+             message += "you have to go to the registration point first"
+             Alert.show(controller: self, message: message)
+             self.regions.forEach { regionBeacon in
+             locationManager.stopRangingBeacons(in: regionBeacon)
+             }
+             }
+             break
+             case(nil, "inscription_retrait"):
+             print("Déclencher code pour s'inscrire")
+             if idRegion == region.identifier {
+             idRegion = region.identifier
+             message += "inscription"
+             displayRegisterView(lrID: lrID)
+             self.regions.forEach { regionBeacon in
+             locationManager.stopRangingBeacons(in: regionBeacon)
+             }
+             }
+             break
+             case(_, "depot"):
+             print("Déclencher code pour déposer photo")
+             message += "depot"
+             break
+             case(_, "inscription_retrait"):
+             print("Déclencher code pour retirer mission")
+             message += "retrait"
+             getMission(lrID: lrID)
+             break
+             case (_, _):
+             // wtf
+             break
+             }*/
+            var message = ""
+            //if idRegion != region.identifier {
+            //idRegion = region.identifier
+            message = actByLRID(regionId: region.identifier, lrID: lrID)
+            //}
             
             message += " => " + String(format:"%04x", beacon.major as! UInt32) + String(format:"%04x", beacon.minor as! UInt32)
             messageLabel.text = message
         })
+    }
+    
+    func stopBeaconDetection() {
+        self.regions.forEach { regionBeacon in
+            locationManager.stopRangingBeacons(in: regionBeacon)
+        }
     }
     
     func actByLRID(regionId: String, lrID: String) -> String{
@@ -118,25 +127,19 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         switch (token, regionId) {
         case(nil, "depot"):
             print("Informer l'utilisateur qu'il doit s'inscrire")
-            if idRegion == regionId {
-                idRegion = regionId
-                message += "you have to go to the registration point first"
-                Alert.show(controller: self, message: message)
-                self.regions.forEach { regionBeacon in
-                    locationManager.stopRangingBeacons(in: regionBeacon)
-                }
-            }
+            //if idRegion == regionId {
+            //idRegion = regionId
+            message += "you have to go to the registration point first"
+            Alert.show(controller: self, message: message)
+            //}
             break
         case(nil, "inscription_retrait"):
             print("Déclencher code pour s'inscrire")
-            if idRegion == regionId {
-                idRegion = regionId
-                message += "inscription"
-                displayRegisterView(lrID: lrID)
-                self.regions.forEach { regionBeacon in
-                    locationManager.stopRangingBeacons(in: regionBeacon)
-                }
-            }
+            //if idRegion == regionId {
+            //idRegion = regionId
+            message += "inscription"
+            displayRegisterView(lrID: lrID)
+            //}
             break
         case(_, "depot"):
             print("Déclencher code pour déposer photo")
@@ -151,6 +154,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
             // wtf
             break
         }
+        stopBeaconDetection()
         return message
     }
     
@@ -208,14 +212,14 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
             let lrID = metadataSplitted[1]
             
             /*if pointIdentifier != "inscription_retrait" && pointIdentifier != "depot" {
-                Alert.show(controller: self, message: "QR-Code invalide (2)")
-            }
-            if pointIdentifier == "inscription_retrait" && token_equipe_present == nil {
-                displayRegisterView(lrID: lrID)
-            }
-            if pointIdentifier == "inscription_retrait" && token_equipe_present != nil {
-                getMission(lrID: lrID)
-            }*/
+             Alert.show(controller: self, message: "QR-Code invalide (2)")
+             }
+             if pointIdentifier == "inscription_retrait" && token_equipe_present == nil {
+             displayRegisterView(lrID: lrID)
+             }
+             if pointIdentifier == "inscription_retrait" && token_equipe_present != nil {
+             getMission(lrID: lrID)
+             }*/
             
             messageLabel.text = actByLRID(regionId: pointIdentifier, lrID: lrID)
             
