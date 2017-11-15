@@ -48,6 +48,7 @@ When the app is installed, you have to go in the settings of the app and add the
 - The Location Restriction
 
 Like this:
+![alt text](https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/settings_iOS.png "Architecture projet")
 
 
 
