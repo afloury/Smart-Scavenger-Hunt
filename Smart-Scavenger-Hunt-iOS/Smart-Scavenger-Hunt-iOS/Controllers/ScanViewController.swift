@@ -29,6 +29,12 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
         }
     }
     
+    func sendPhoto(lrID: String) {
+        if let photoController = self.tabBarController?.viewControllers![2] as? PhotoViewController {
+            photoController.sendPhoto(lrID: lrID)
+        }
+    }
+    
     func initBeacon() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
@@ -92,6 +98,7 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
             break
         case(_, "depot"):
             print("Déclencher code pour déposer photo")
+            sendPhoto(lrID: lrID)
             message += "depot"
             break
         case(_, "inscription_retrait"):
