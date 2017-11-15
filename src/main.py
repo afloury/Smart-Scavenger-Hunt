@@ -27,10 +27,10 @@ def create_container():
             'score': team_data['score']
         }]
 
-    return json_data(scores)
-
     # Trier du plus grand au plus petit
     scores.sort(key=lambda x: x['score'], reverse=True)
+
+    return json_data(scores)
 
 
 if __name__ == '__main__':
