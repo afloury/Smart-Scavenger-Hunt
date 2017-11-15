@@ -20,10 +20,9 @@ app = Flask(__name__)
 CORS(app)
 
 # Configuration jeu
-points_won = 5
-points_lost = -1
-points_giveup = -2
-
+points_won = 3
+points_lost = -2
+points_giveup = -3
 
 
 # Todo: Rendre configurable le serveur redis depuis ENV ?
@@ -38,10 +37,10 @@ nb_items_per_mission = 5  # Todo: rendre ça configurable via variable d'environ
 current_mission = None
 
 
-def get_or_create_mission():
+def get_or_create_mission(force=False):
     team_data = json.loads(r.get('team-' + os.environ['TEAM_UUID']).decode('utf-8'))
 
-    if 'mission' not in team_data:
+    if force or 'mission' not in team_data:
         team_data['mission'] = google_things.gen_mission(nb_items_per_mission)
         r.set('team-' + os.environ['TEAM_UUID'], json.dumps(team_data).encode('utf-8'))
 
@@ -155,6 +154,12 @@ def google_vision():
 @app.route('/mission/', methods=['GET'])
 def get_mission():
     return json_data(get_or_create_mission())
+
+
+@app.route('/mission/', methods=['DELETE'])
+def get_mission():
+    get_or_create_mission(True)
+    return '', 204
 
 
 @app.route('/get_team_data/', methods=['GET'])
