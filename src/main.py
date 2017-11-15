@@ -127,6 +127,11 @@ def get_mission():
     return routing_to_game('get', '/mission/')
 
 
+@app.route('/mission/', methods=['DELETE'])
+def get_mission():
+    return routing_to_game('delete', '/mission/')
+
+
 @app.route('/get_team_data/', methods=['GET'])
 def get_team_data():
     return routing_to_game('get', '/get_team_data/')
