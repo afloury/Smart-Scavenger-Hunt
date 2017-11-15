@@ -128,5 +128,3 @@ ________
   - scores par équipes
   - liste des photos d'une équipe
   - détails d'une photo d'une équipe
-  
-- 
