@@ -18,9 +18,53 @@ Based on the scavenger hunt game, the goal is to :
 
 ## Installing
 
+### Equipment
+- An iPhone with iOS 11 minimum
+- Computer with Mac OS 10.12.6 or above
+- Either or both:
+  - 2x Bluetooth 4.0 LE compatible device (ex: Raspberry Pis) for the iBeacon feature
+  - 2x Web browser connected to a monitor for the QR-Code feature
+- Web browser connected to a monitor for visual feedback (score, won, lost)
+
+### Software
+- Xcode 9 or above
+- A Google Cloud Vision API account
+- Server with Docker and Docker-Compose
+
+### Launch server with docker-compose
+
+
+### Install iOS app on iPhone
+
+- Open the project in Xcode
+- Connect your iPhone to your Mac
+- Select your device in the target list
+- Launch the App
+
+### Configure iOS app (settings ip)
+
+When the app is installed, you have to go in the settings of the app and add the address of:
+- The Router
+- The Location Restriction
+
+Like this:  
+
+<img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/settings_iOS.PNG" alt="Drawing" width="400px"/>
+
+
+### Setup iBeacon/RPi
+
+### Setup QR-Code
+
+### Setup visual feedback
+
 
 
 ## Making your own (Tutorial)
+
+Schema Architecture
+
+<img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/schemaArchi.png" alt="Schema Architecture" width="800px"/>
 
 
 
