@@ -62,6 +62,11 @@ Like this:
 
 ## Making your own (Tutorial)
 
+Schema Architecture
+
+<img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/schemaArchi.PNG" alt="Drawing" width="600px"/>
+
+
 
 ## Branches
 
