@@ -122,7 +122,7 @@ def google_vision():
         'team': team_data['name'],
         'message': 'You lost.' if winning_label is None else ('You won with : \'%s\'' % winning_label),
         'has_won': winning_label is not None,
-        'points': new_score
+        'score': new_score
     })
 
     if response.status_code != 200:
