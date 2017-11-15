@@ -11,7 +11,6 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     var imagePicker: UIImagePickerController!
     var captureSession:AVCaptureSession!
     let locationManager = CLLocationManager()
-    
     var latitude = 0.0
     var longitude = 0.0
     var listenNextLocation = false
@@ -71,17 +70,17 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     }
     
     @IBAction func sendImage(_ sender: AnyObject) {
-        sendPhoto()
+        sendPhoto(lrID: "trolol")
     }
     
-    func sendPhoto() {
+    func sendPhoto(lrID: String) {
         guard let imageTaken = imageTake.image else {
             Alert.show(controller: self, message: "Il faut prendre une photo avant de pouvoir l'envoyer.")
             return
         }
         let resizedImage = imageTaken.resized(toWidth: 800)
         let imageData = UIImageJPEGRepresentation(resizedImage!, 0.75)!
-        api.sendPhoto(imageData: imageData, completion: { (response) in
+        api.sendPhoto(lrID: lrID, lat: String(latitude), long: String(longitude), imageData: imageData, completion: { (response) in
             Alert.show(controller: self, message: response)
         })
     }

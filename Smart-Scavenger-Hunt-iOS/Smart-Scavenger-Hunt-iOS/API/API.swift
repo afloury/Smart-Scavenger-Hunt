@@ -18,21 +18,22 @@ class API {
         }
     }
     
-    
-    func sendPhoto(imageData: Data, completion: @escaping (_ result: String)->()) {
+    func sendPhoto(lrID: String, lat: String, long: String, imageData: Data, completion: @escaping (_ result: String)->()) {
         let headers: HTTPHeaders = [
             "Authentication": token,
-            "X-SmartScavengerHunt-LRID": "lrid",
-            "X-SmartScavengerHunt-lat": "",
-            "X-SmartScavengerHunt-long": ""
+            "X-SmartScavengerHunt-LRID": lrID,
+            "X-SmartScavengerHunt-lat": lat,
+            "X-SmartScavengerHunt-long": long
         ]
         Alamofire.upload(imageData, to: "\(urlBaseRouter)picture/", headers: headers).responseJSON { response in
-            //debugPrint(response)
+            debugPrint(response)
             if let json = response.result.value {
                 print("JSON: \(json)")
                 let jsonObject = JSON(json)
                 let message =  jsonObject["message"].stringValue
                 completion(message)
+            } else {
+                completion("No response from the server")
             }
         }
     }

@@ -25,7 +25,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         //print("viewDidAppear")
-        if let token = keychain.get("token") {
+        if keychain.get("token") != nil {
             titleTop.text = "Hey"
             messageTitle.text = "Go to the withdrawal point to get your mission"
             titleTableV.isHidden = true
