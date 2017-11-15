@@ -18,11 +18,26 @@ Based on the scavenger hunt game, the goal is to :
 
 ## Installing
 
+### Equipment
+- An iPhone with iOS 11 minimum
+- Computer with Mac OS 10.12.6 or above
+- Either or both:
+  - 2x Bluetooth 4.0 LE compatible device (ex: Raspberry Pis) for the iBeacon feature
+  - 2x Web browser connected to a monitor for the QR-Code feature
+- Web browser connected to a monitor for visual feedback (score, won, lost)
 
+### Software
+- Xcode 9 or above
+- A Google Cloud Vision API account
+- Server with Docker and Docker-Compose
 
 ## Making your own (Tutorial)
 
+### Install iOS app on iDevice
 
+### Configure iOS app (settings ip)
+
+### 
 
 ## Branches
 
