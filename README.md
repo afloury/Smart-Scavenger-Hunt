@@ -8,7 +8,7 @@ IOT Project based on the principle of Scavenger Hunt
 Based on the scavenger hunt game, the goal is to :
 - Go to the registration point
 - Create your team
-- go to the withdrawal point
+- Go to the withdrawal point
 - Get a list of objects
 - Take a photo of one object in the list
 - Go to the delivery point
@@ -66,6 +66,14 @@ Schema Architecture
 
 <img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/schemaArchi.png" alt="Schema Architecture" width="800px"/>
 
+#### iOS App
+
+##### External Library
+- [Alamofire](https://github.com/Alamofire/Alamofire) - Elegant HTTP Networking in Swift
+- [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) - Better way to deal with JSON data in Swift
+- [KeychainSwift](https://github.com/evgenyneu/keychain-swift) - Helper functions for saving text in Keychain securely for iOS, OS X, tvOS and watchOS.
+
+ 
 
 
 ## Branches
