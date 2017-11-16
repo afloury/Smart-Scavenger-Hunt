@@ -33,6 +33,8 @@ Based on the scavenger hunt game, the goal is to :
 
 ### Launch server with docker-compose
 
+Clone the master branch into a local folder, and launch the following command:  
+`docker-compose up`
 
 ### Install iOS app on iPhone
 
