@@ -82,8 +82,6 @@ Schema Architecture
 #### Dependency manager
 - [CocoaPods](https://cocoapods.org/)
 
-
-
 ### Supervision
 
 #### Language
@@ -91,9 +89,17 @@ Schema Architecture
 - CSS
 - JavaScript
 
-#### Library & Framework
+#### Library, Framework & Style
 - [JQuery](https://jquery.com/) - Make it much easier to use JavaScript on your website
 - [Bootstrap](https://getbootstrap.com/) - Designing websites and web applications
+
+
+### Server & Scaling
+- Docker & Docker-Compose to containerize the different parts of the project
+- Python:
+  - Server: Flask, Gunicorn & Gevent
+  - Client: Requests to perform REST requests, Redis to store data between workers and containers
+- Google Cloud Vision API to perform visual recognition on users' pictures
 
 ## Branches
 
