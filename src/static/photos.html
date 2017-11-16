@@ -135,7 +135,12 @@
                                 })
                             )
                         )
-                        .append($('<td/>').text(position))
+                        .append($('<td/>').append(
+                            $('<a/>')
+                                .text(position)
+                                .attr('href', 'https://www.google.fr/maps/place/' + position)
+                                .attr('target', '_blank')
+                        ))
                         .append($('<td/>').text(winning_label === null ? 'Photo not match' : winning_label))
                 );
             }
