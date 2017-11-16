@@ -6,6 +6,7 @@ RUN python3 -m pip install -r requirements.txt
 ADD src /SmartScavengerHunt_supervision/
 WORKDIR /SmartScavengerHunt_supervision/
 
+ENV TIMEOUT 30
 EXPOSE 80
 CMD [\
     "gunicorn", \
@@ -15,6 +16,7 @@ CMD [\
     "--backlog", "2000", \
 \
     "--workers", "8", \
+    "--worker-class", "gevent", \
     "--worker-connections", "2000", \
 \
     "--log-level", "debug", \
