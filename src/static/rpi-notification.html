@@ -1,8 +1,10 @@
 <!doctype html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <script src="libraries/jquery/js/jquery-3.2.1.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <style type="text/css">
             html, body {
                 width: 100%;
@@ -35,15 +37,19 @@
         </style>
     </head>
     <body>
+        <link href="libraries/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
         <div id="container">
             <h1 id="team_name">Connexion en cours</h1>
             <h2 id="message">Veuillez patienter...</h2>
             <h2 id="score"></h2>
         </div>
 
+        <script src="libraries/jquery/js/jquery-3.2.1.min.js"></script>
+        <script src="libraries/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
         <script type="text/javascript">
             $(function() {
-                var polling_url = '/rpi-notification/';
+                var polling_url = 'http://127.0.0.1:5001/rpi-notification/';
 
                 function display_notification(team, message, score, has_won) {
                     $('#container').addClass(has_won ? 'won' : 'lost');
