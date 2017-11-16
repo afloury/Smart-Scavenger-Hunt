@@ -84,6 +84,18 @@ Schema Architecture
 - [CocoaPods](https://cocoapods.org/)
 
 
+
+#### Supervision
+
+##### Language
+- HTML
+- CSS
+- JavaScript
+
+##### Library & Framework
+- [JQuery](https://jquery.com/) - Make it much easier to use JavaScript on your website
+- [Bootstrap](https://getbootstrap.com/) - Designing websites and web applications
+
 ## Branches
 
 - **[Router](https://github.com/afloury/Smart-Scavenger-Hunt/tree/router)**
