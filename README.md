@@ -52,13 +52,12 @@ Like this:
 <img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/settings_iOS.PNG" alt="Drawing" width="400px"/>
 
 
-### Setup iBeacon/RPi
+### Setup iBeacon/RPi, QR-Code, visual feedback
 
-### Setup QR-Code
-
-### Setup visual feedback
-
-
+Execute the script `rpi_depot/install.sh` to install dependencies.  
+Modify the server URLs in the file `rpi_depot/rpi_side_by_side.html`  
+Clone the rpi-ibeacon branch into /home/pi/  
+Set the script `rpi_depot/start.sh` to autostart on boot.
 
 ## Making your own (Tutorial)
 
