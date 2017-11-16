@@ -158,7 +158,7 @@ def get_mission():
 def delete_mission():
     team_data = json.loads(r.get('team-' + os.environ['TEAM_UUID']).decode('utf-8'))
 
-    get_or_create_mission(True, team_data['mission'].length)
+    get_or_create_mission(True, len(team_data['mission']))
 
     new_score = set_score(points_giveup, True)
 
