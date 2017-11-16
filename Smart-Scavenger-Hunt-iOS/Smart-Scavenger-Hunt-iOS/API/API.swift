@@ -44,7 +44,6 @@ class API {
         }
     }
     
-    
     func loadUUID(completion: @escaping (_ uuidDelivery: String, _ uuidWithdrawal: String)->()) {
         Alamofire.request("\(urlBaseLocationRestriction)uuid/").responseJSON { response in
             if let json = response.result.value {
@@ -72,6 +71,14 @@ class API {
                 completion(items)
             }
         }
+    }
+    
+    func leaveMission() {
+        getTokenFromKeychain()
+        let headers = [
+            "Authentication": token
+        ]
+        Alamofire.request("\(urlBaseRouter)mission/", method: .delete, headers: headers)
     }
     
     func registerTeam(name: String, lrID: String, completion: @escaping (_ message: String?)->()) {
