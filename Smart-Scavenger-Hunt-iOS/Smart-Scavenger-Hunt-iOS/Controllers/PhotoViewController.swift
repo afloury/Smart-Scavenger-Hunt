@@ -6,6 +6,7 @@ import Photos
 
 class PhotoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, AVCaptureMetadataOutputObjectsDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet weak var labelCenter: UILabel!
     @IBOutlet weak var takePhotoButton: UIButton!
     @IBOutlet weak var imageTake: UIImageView!
     var imagePicker: UIImagePickerController!
@@ -70,6 +71,9 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     }
     
     @IBAction func sendImage(_ sender: AnyObject) {
+        // This button shoudn't be enabled in production,
+        // it help us for testing, otherwise the photo
+        // is send when scanning QRCode or Beacon
         sendPhoto(lrID: "trolol")
     }
     
@@ -82,6 +86,10 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
         let imageData = UIImageJPEGRepresentation(resizedImage!, 0.75)!
         api.sendPhoto(lrID: lrID, lat: String(latitude), long: String(longitude), imageData: imageData, completion: { (response) in
             Alert.show(controller: self, message: response)
+            // display instruction in home screen
+            if let home = self.tabBarController?.viewControllers![0] as? HomeViewController {
+                home.displayInstructions()
+            }
         })
     }
     
