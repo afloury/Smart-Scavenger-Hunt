@@ -19,13 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZl-aU-bbz">
-                                <rect key="frame" x="163" y="44" width="49.5" height="27"/>
+                                <rect key="frame" x="163" y="44" width="49.5" height="26.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3e9-Jc-ChM">
-                                <rect key="frame" x="16" y="94.5" width="344" height="81.5"/>
+                                <rect key="frame" x="16" y="94" width="344" height="81.5"/>
                                 <string key="text">
 Welcome to Scavenger Hunt
 to start a session go near to registration point</string>
@@ -34,7 +34,7 @@ to start a session go near to registration point</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dhe-IF-ia5">
-                                <rect key="frame" x="0.0" y="233" width="375" height="385"/>
+                                <rect key="frame" x="0.0" y="231.5" width="375" height="276"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myCell" textLabel="mqa-LE-5G0" detailTextLabel="QSa-om-bA8" style="IBUITableViewCellStyleValue1" id="FLU-13-Qbu">
@@ -67,8 +67,39 @@ to start a session go near to registration point</string>
                                     <outlet property="delegate" destination="63q-TP-CBg" id="Jfp-64-g7N"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rankings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NT8-dc-bxs">
-                                <rect key="frame" x="152.5" y="203.5" width="70" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List of items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NT8-dc-bxs">
+                                <rect key="frame" x="141" y="203" width="93.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hzS-js-yQh">
+                                <rect key="frame" x="20" y="568" width="335" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80Z-Oc-gN9">
+                                        <rect key="frame" x="0.0" y="0.0" width="163.5" height="30"/>
+                                        <color key="backgroundColor" red="0.78823529411764703" green="0.23137254901960785" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="QRCode">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="qrCodeAction:" destination="63q-TP-CBg" eventType="touchUpInside" id="pZJ-8P-Qk7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dn-QJ-hew">
+                                        <rect key="frame" x="171.5" y="0.0" width="163.5" height="30"/>
+                                        <color key="backgroundColor" red="0.32941176470588235" green="0.67450980392156867" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Beacon">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="beaconAction:" destination="63q-TP-CBg" eventType="touchUpInside" id="J21-xv-MXV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your detection type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGn-zI-EBQ">
+                                <rect key="frame" x="87" y="527.5" width="201.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -76,24 +107,31 @@ to start a session go near to registration point</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="BGn-zI-EBQ" firstAttribute="top" secondItem="dhe-IF-ia5" secondAttribute="bottom" constant="20" id="7b7-CX-TxU"/>
                             <constraint firstItem="NT8-dc-bxs" firstAttribute="centerX" secondItem="bde-Eb-N3v" secondAttribute="centerX" id="8CU-Gv-Dfa"/>
                             <constraint firstItem="3e9-Jc-ChM" firstAttribute="leading" secondItem="bde-Eb-N3v" secondAttribute="leading" constant="16" id="976-Lt-jOa"/>
                             <constraint firstItem="dhe-IF-ia5" firstAttribute="leading" secondItem="bde-Eb-N3v" secondAttribute="leading" id="GbN-Zs-meW"/>
+                            <constraint firstItem="hzS-js-yQh" firstAttribute="leading" secondItem="bde-Eb-N3v" secondAttribute="leading" constant="20" id="JGr-fw-faE"/>
                             <constraint firstItem="bZl-aU-bbz" firstAttribute="centerX" secondItem="bde-Eb-N3v" secondAttribute="centerX" id="JUO-Qj-XJm"/>
                             <constraint firstItem="3e9-Jc-ChM" firstAttribute="centerX" secondItem="bde-Eb-N3v" secondAttribute="centerX" id="L4T-7y-eRz"/>
                             <constraint firstItem="bde-Eb-N3v" firstAttribute="trailing" secondItem="dhe-IF-ia5" secondAttribute="trailing" id="Nkn-6U-5hi"/>
+                            <constraint firstItem="BGn-zI-EBQ" firstAttribute="centerX" secondItem="bde-Eb-N3v" secondAttribute="centerX" id="Orn-Sl-pJk"/>
+                            <constraint firstItem="bde-Eb-N3v" firstAttribute="trailing" secondItem="hzS-js-yQh" secondAttribute="trailing" constant="20" id="T9m-0F-C6l"/>
                             <constraint firstItem="bZl-aU-bbz" firstAttribute="top" secondItem="bde-Eb-N3v" secondAttribute="top" constant="24" id="Xr6-HA-rUN"/>
                             <constraint firstItem="dhe-IF-ia5" firstAttribute="top" secondItem="NT8-dc-bxs" secondAttribute="bottom" constant="8" id="ZyJ-uj-60g"/>
+                            <constraint firstItem="bde-Eb-N3v" firstAttribute="bottom" secondItem="hzS-js-yQh" secondAttribute="bottom" constant="20" id="cSv-r5-fE6"/>
                             <constraint firstItem="3e9-Jc-ChM" firstAttribute="top" secondItem="bZl-aU-bbz" secondAttribute="bottom" constant="24" id="mev-Ts-hXT"/>
                             <constraint firstItem="dhe-IF-ia5" firstAttribute="width" secondItem="r4u-RE-cPQ" secondAttribute="width" id="rC2-rw-MKP"/>
                             <constraint firstItem="NT8-dc-bxs" firstAttribute="top" secondItem="3e9-Jc-ChM" secondAttribute="bottom" constant="27.5" id="x87-8d-diI"/>
-                            <constraint firstItem="bde-Eb-N3v" firstAttribute="bottom" secondItem="dhe-IF-ia5" secondAttribute="bottom" id="y9q-41-YOG"/>
+                            <constraint firstItem="hzS-js-yQh" firstAttribute="top" secondItem="BGn-zI-EBQ" secondAttribute="bottom" constant="20" id="zUx-hl-0KE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bde-Eb-N3v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house-dark" selectedImage="house" id="qQt-TF-sZk"/>
                     <connections>
+                        <outlet property="beaconBtn" destination="9dn-QJ-hew" id="TV9-5w-JjP"/>
                         <outlet property="messageTitle" destination="3e9-Jc-ChM" id="BSP-fX-Zot"/>
+                        <outlet property="qrCodeBtn" destination="80Z-Oc-gN9" id="bBJ-4T-KOZ"/>
                         <outlet property="tableView" destination="dhe-IF-ia5" id="jbL-Kb-iDy"/>
                         <outlet property="titleTableV" destination="NT8-dc-bxs" id="K2X-0U-YIM"/>
                         <outlet property="titleTop" destination="bZl-aU-bbz" id="dLv-rq-rpT"/>
@@ -200,6 +238,23 @@ to start a session go near to registration point</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="aYl-lK-wSc" style="IBUITableViewCellStyleDefault" id="8SE-g2-ogC">
+                                        <rect key="frame" x="0.0" y="287.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8SE-g2-ogC" id="pdY-bp-ZrU">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Leave mission (penalty)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aYl-lK-wSc">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -222,46 +277,54 @@ to start a session go near to registration point</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lir-j3-QI0">
-                                <rect key="frame" x="16" y="568" width="343" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4BH-nX-xQa">
-                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
-                                        <state key="normal" title="Take Photo"/>
-                                        <connections>
-                                            <action selector="takePhoto:" destination="SU8-dp-bCn" eventType="touchUpInside" id="7ku-Ws-A5U"/>
-                                            <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PUY-jR-KaW"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3n-bZ-lwJ">
-                                        <rect key="frame" x="175.5" y="0.0" width="167.5" height="30"/>
-                                        <state key="normal" title="Send"/>
-                                        <connections>
-                                            <action selector="sendImage:" destination="SU8-dp-bCn" eventType="touchUpInside" id="4Ql-uJ-NkS"/>
-                                            <action selector="sendImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vol-vg-rUa"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your photo will dispay here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNH-tc-ROb">
+                                <rect key="frame" x="20" y="308.5" width="334.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y94-0F-rFS">
-                                <rect key="frame" x="16" y="20" width="343" height="540"/>
+                                <rect key="frame" x="16" y="20" width="343" height="552"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="0.10129494863013698" colorSpace="calibratedRGB"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4BH-nX-xQa">
+                                <rect key="frame" x="16" y="580" width="343" height="30"/>
+                                <state key="normal" title="Take Photo">
+                                    <color key="titleColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="SU8-dp-bCn" eventType="touchUpInside" id="7ku-Ws-A5U"/>
+                                    <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PUY-jR-KaW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tX4-ik-NO3">
+                                <rect key="frame" x="164" y="502" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="sendImage:" destination="SU8-dp-bCn" eventType="touchUpInside" id="Wgi-nF-DTz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="7Os-pr-d7E" firstAttribute="trailing" secondItem="4BH-nX-xQa" secondAttribute="trailing" constant="16" id="0Dg-pz-DKr"/>
                             <constraint firstItem="y94-0F-rFS" firstAttribute="leading" secondItem="7Os-pr-d7E" secondAttribute="leading" constant="16" id="Dfc-tg-Coy"/>
-                            <constraint firstItem="7Os-pr-d7E" firstAttribute="bottom" secondItem="lir-j3-QI0" secondAttribute="bottom" constant="20" id="IC8-ww-c69"/>
-                            <constraint firstItem="4BH-nX-xQa" firstAttribute="leading" secondItem="7Os-pr-d7E" secondAttribute="leading" constant="16" id="JP4-GS-qu7"/>
-                            <constraint firstItem="4BH-nX-xQa" firstAttribute="top" secondItem="y94-0F-rFS" secondAttribute="bottom" constant="8" id="PBb-2l-4kA"/>
+                            <constraint firstItem="DNH-tc-ROb" firstAttribute="leading" secondItem="7Os-pr-d7E" secondAttribute="leading" constant="20" id="GHG-Wc-fpJ"/>
+                            <constraint firstItem="4BH-nX-xQa" firstAttribute="leading" secondItem="7Os-pr-d7E" secondAttribute="leading" constant="16" id="OUd-Dm-x5Q"/>
+                            <constraint firstItem="7Os-pr-d7E" firstAttribute="bottom" secondItem="4BH-nX-xQa" secondAttribute="bottom" constant="8" id="Q1X-o2-e1y"/>
                             <constraint firstItem="y94-0F-rFS" firstAttribute="centerX" secondItem="7Os-pr-d7E" secondAttribute="centerX" id="cwH-Ti-LUd"/>
+                            <constraint firstItem="4BH-nX-xQa" firstAttribute="top" secondItem="y94-0F-rFS" secondAttribute="bottom" constant="8" id="fH4-Ee-MJm"/>
                             <constraint firstItem="y94-0F-rFS" firstAttribute="top" secondItem="7Os-pr-d7E" secondAttribute="top" id="hLe-Rn-WmK"/>
-                            <constraint firstItem="lir-j3-QI0" firstAttribute="centerX" secondItem="7Os-pr-d7E" secondAttribute="centerX" id="hTi-8H-t2t"/>
+                            <constraint firstItem="DNH-tc-ROb" firstAttribute="centerY" secondItem="7Os-pr-d7E" secondAttribute="centerY" id="pl0-ec-Huf"/>
+                            <constraint firstItem="DNH-tc-ROb" firstAttribute="centerX" secondItem="7Os-pr-d7E" secondAttribute="centerX" id="u9o-RY-UBR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Os-pr-d7E"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Photo" image="photo-camera-dark" selectedImage="photo-camera" id="cLC-bm-Z5N"/>
                     <connections>
                         <outlet property="imageTake" destination="y94-0F-rFS" id="nIO-oT-e3Z"/>
+                        <outlet property="labelCenter" destination="DNH-tc-ROb" id="qmg-r0-eHG"/>
                         <outlet property="takePhotoButton" destination="4BH-nX-xQa" id="Eca-b3-XSo"/>
                     </connections>
                 </viewController>
@@ -278,20 +341,20 @@ to start a session go near to registration point</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identifiant" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zc6-V6-S9Z">
-                                <rect key="frame" x="149.5" y="589" width="76.5" height="21"/>
+                                <rect key="frame" x="149.5" y="638" width="76.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYq-V9-Oeu">
-                                <rect key="frame" x="16" y="584" width="129.5" height="30"/>
+                                <rect key="frame" x="16" y="633" width="129.5" height="30"/>
                                 <state key="normal" title="Beacon"/>
                                 <connections>
                                     <action selector="SearchBeacon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bOV-FL-WeG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7p-EA-gmj">
-                                <rect key="frame" x="234" y="584" width="129.5" height="30"/>
+                                <rect key="frame" x="234" y="633" width="129.5" height="30"/>
                                 <state key="normal" title="QR Code"/>
                                 <connections>
                                     <action selector="searchQRCode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ECw-L2-uo3"/>
@@ -368,7 +431,7 @@ Register your team</string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="lOI-LB-dQC" firstAttribute="centerX" secondItem="dx3-MF-ooj" secondAttribute="centerX" id="1EY-03-5kA"/>
                             <constraint firstItem="VYi-Bh-2Cu" firstAttribute="leading" secondItem="dx3-MF-ooj" secondAttribute="leading" constant="16" id="9Ew-tT-Anp"/>
@@ -407,7 +470,6 @@ Register your team</string>
                     </tabBar>
                     <connections>
                         <segue destination="63q-TP-CBg" kind="relationship" relationship="viewControllers" id="c9t-yi-aMd"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="h09-Yh-ZHZ"/>
                         <segue destination="SU8-dp-bCn" kind="relationship" relationship="viewControllers" id="ZxJ-vn-9Hg"/>
                         <segue destination="aGT-Yp-L5b" kind="relationship" relationship="viewControllers" id="kth-b4-0TP"/>
                     </connections>
