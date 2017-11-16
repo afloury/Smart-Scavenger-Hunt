@@ -11,6 +11,7 @@ CORS(app)
 # Fixme: Virer cette ligne quand https://github.com/docker/docker-py/pull/1545 aura été mergé
 client = docker.from_env()
 
+
 @app.route('/')
 def increment():
     return 'Hello world, this is the orchestrator!'
@@ -23,7 +24,7 @@ def create_container():
     container_name = 'smart-scavenger-hunt-game-' + data['team_uuid']
 
     client.containers.run(
-        image='smart-scavenger-hunt:game',
+        image='afloury/smart-scavenger-hunt:game',
         auto_remove=True,
         remove=True,
         name=container_name,
