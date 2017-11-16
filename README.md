@@ -73,7 +73,10 @@ Schema Architecture
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) - Better way to deal with JSON data in Swift
 - [KeychainSwift](https://github.com/evgenyneu/keychain-swift) - Helper functions for saving text in Keychain securely for iOS, OS X, tvOS and watchOS.
 
- 
+##### Apple Framework
+
+- [AV Foundation](https://developer.apple.com/av-foundation/) - Used to take photos
+- [CoreLocation](https://developer.apple.com/documentation/corelocation) - Used to locate beacons
 
 
 ## Branches
