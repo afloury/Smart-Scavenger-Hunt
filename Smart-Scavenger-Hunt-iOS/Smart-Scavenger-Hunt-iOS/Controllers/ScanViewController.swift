@@ -1,8 +1,6 @@
 import UIKit
 import AVFoundation
 import CoreLocation
-import Alamofire
-import SwiftyJSON
 import KeychainSwift
 
 class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCaptureMetadataOutputObjectsDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, CLLocationManagerDelegate {
@@ -53,7 +51,6 @@ class ScanViewController: UIViewController, UINavigationControllerDelegate, AVCa
     func displayRegisterView(lrID: String) {
         registerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "registerViewController") as! RegisterTeamViewController
         registerViewController.lrID = lrID
-        registerViewController.tabBarCtrl = tabBarController!
         let card = registerViewController.view!
         let screenSize = UIScreen.main.bounds
         let screenHeight = screenSize.height

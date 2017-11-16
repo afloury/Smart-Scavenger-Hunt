@@ -7,7 +7,6 @@ class RegisterTeamViewController: UIViewController {
     @IBOutlet weak var startSession: UIButton!
     @IBOutlet weak var teamTextField: UITextField!
     var lrID = ""
-    var tabBarCtrl: UITabBarController!
     let api = API()
     
     override func viewDidLoad() {
@@ -23,7 +22,6 @@ class RegisterTeamViewController: UIViewController {
                 }
             })
             self.view.removeFromSuperview()
-            self.tabBarCtrl.selectedIndex = 0
         } else {
             Alert.show(controller: self, message: "Nom d'équipe vide")
         }
