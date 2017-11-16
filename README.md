@@ -66,33 +66,33 @@ Schema Architecture
 
 <img src="https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/Images/schemaArchi.png" alt="Schema Architecture" width="800px"/>
 
-#### iOS App
+### iOS App
 
 
-##### External Library
+#### External Library
 - [Alamofire](https://github.com/Alamofire/Alamofire) - Elegant HTTP Networking in Swift
 - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) - Better way to deal with JSON data in Swift
 - [KeychainSwift](https://github.com/evgenyneu/keychain-swift) - Helper functions for saving text in Keychain securely for iOS, OS X, tvOS and watchOS.
 
 
-##### Apple Framework
+#### Apple Framework
 - [AV Foundation](https://developer.apple.com/av-foundation/) - Used to take photos
 - [CoreLocation](https://developer.apple.com/documentation/corelocation) - Used to locate beacons
 
 
-##### Dependency manager
+#### Dependency manager
 - [CocoaPods](https://cocoapods.org/)
 
 
 
-#### Supervision
+### Supervision
 
-##### Language
+#### Language
 - HTML
 - CSS
 - JavaScript
 
-##### Library & Framework
+#### Library & Framework
 - [JQuery](https://jquery.com/) - Make it much easier to use JavaScript on your website
 - [Bootstrap](https://getbootstrap.com/) - Designing websites and web applications
 
