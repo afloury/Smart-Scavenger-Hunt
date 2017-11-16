@@ -10,6 +10,7 @@ WORKDIR /SmartScavengerHunt_game/
 
 RUN mkdir /SmartScavengerHunt_game/pictures
 
+ENV TIMEOUT 30
 EXPOSE 80
 CMD [\
     "gunicorn", \
@@ -19,6 +20,7 @@ CMD [\
     "--backlog", "2000", \
 \
     "--workers", "8", \
+    "--worker-class", "gevent", \
     "--worker-connections", "2000", \
 \
     "--log-level", "debug", \
