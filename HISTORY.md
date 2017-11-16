@@ -9,7 +9,7 @@
 - Analyse des priorités de développement
     - Pour le moment, le stockage des données n'est pas prioritaire
     - Études et formations sur les outils inconnus
-- [Ébauche de user stories](../blob/master/doc/2017-11-06/USER_STORIES.MD)
+- [Ébauche de user stories](https://github.com/afloury/Smart-Scavenger-Hunt/blob/master/doc/2017-11-06/USER_STORIES.MD)
 
 ________
 
@@ -19,8 +19,8 @@ ________
   - Analyse des différentes routes à réaliser
   - Réflexion sur les cas particuliers (cas réel)
   - Réflexion sur l'aspect sécurité du jeu (éviter la triche)
-- [Documentation des routes pour le Router](https://github.com/afloury/Smart-Scavenger-Hunt-Router)
-- [Documentation des routes pour le jeu (container)](https://github.com/afloury/Smart-Scavenger-Hunt-Game)
+- [Documentation des routes pour le Router](https://github.com/afloury/Smart-Scavenger-Hunt/tree/router)
+- [Documentation des routes pour le jeu (container)](https://github.com/afloury/Smart-Scavenger-Hunt/tree/game/api-documentation/endpoints)
 - Mise en place des différents dépôts Git
 - Planification des développements
   - planification des tâches à réaliser
