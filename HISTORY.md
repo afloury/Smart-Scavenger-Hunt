@@ -142,7 +142,7 @@ ________
 - QR-Code + Retour visuel sur l'écran du pi
 - Abandon mission depuis iOS
 - Nettoyage du code Swift
-- Amélioration interface iOS
+- Amélioration interfaces iOS
   - Le scan se fait maintenant sur la page d'accueil (l'ancien menu scan a été supprimé)
   - Amélioration du design (home screen)
   - Amélioration UX (message explicite)
