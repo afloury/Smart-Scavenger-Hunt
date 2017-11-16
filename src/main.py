@@ -12,9 +12,6 @@ from google.cloud import vision
 from google.cloud.vision import types
 
 
-# Initialisation Google API Vision
-client = vision.ImageAnnotatorClient()
-
 # Initialisation Flask
 app = Flask(__name__)
 CORS(app)
@@ -37,11 +34,11 @@ nb_items_per_mission = 5  # Todo: rendre ça configurable via variable d'environ
 current_mission = None
 
 
-def get_or_create_mission(force=False):
+def get_or_create_mission(force=False, force_nb_items=None):
     team_data = json.loads(r.get('team-' + os.environ['TEAM_UUID']).decode('utf-8'))
 
     if force or 'mission' not in team_data:
-        team_data['mission'] = google_things.gen_mission(nb_items_per_mission)
+        team_data['mission'] = google_things.gen_mission(nb_items_per_mission if force_nb_items is None else force_nb_items)
         r.set('team-' + os.environ['TEAM_UUID'], json.dumps(team_data).encode('utf-8'))
 
     return team_data['mission']
@@ -74,6 +71,7 @@ def google_vision():
     raw_data = request.stream.read()
     image = types.Image(content=raw_data)
 
+    client = vision.ImageAnnotatorClient()
     response = client.label_detection(image=image)
     labels = response.label_annotations
 
@@ -158,7 +156,22 @@ def get_mission():
 
 @app.route('/mission/', methods=['DELETE'])
 def delete_mission():
-    get_or_create_mission(True)
+    team_data = json.loads(r.get('team-' + os.environ['TEAM_UUID']).decode('utf-8'))
+
+    get_or_create_mission(True, team_data['mission'].length)
+
+    new_score = set_score(points_giveup, True)
+
+    response = requests.post(router_server + '/rpi-notification/', json={
+        'team': team_data['name'],
+        'message': 'You gave up the mission.',
+        'has_won': False,
+        'score': new_score
+    })
+
+    if response.status_code != 200:
+        return json_error('Le routeur erreur lors de contact de la route /rpi-notification/ pour callback retour visuel.')
+
     return '', 204
 
 
