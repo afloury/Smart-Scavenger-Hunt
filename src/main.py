@@ -157,7 +157,7 @@ def get_mission():
 
 
 @app.route('/mission/', methods=['DELETE'])
-def get_mission():
+def delete_mission():
     get_or_create_mission(True)
     return '', 204
 
