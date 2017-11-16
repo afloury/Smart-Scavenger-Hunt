@@ -65,6 +65,7 @@ def create_container():
     for team_uuid in json.loads(raw_teams.decode('utf-8')):
         team_data = json.loads(r.get('team-' + team_uuid).decode('utf-8'))
         scores += [{
+            'uuid': team_uuid,
             'name': team_data['name'],
             'score': team_data['score']
         }]
