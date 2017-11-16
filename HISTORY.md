@@ -128,3 +128,19 @@ ________
   - scores par équipes
   - liste des photos d'une équipe
   - détails d'une photo d'une équipe
+  
+  
+________
+
+## Jour 9 (2017-11-16)
+
+- Build docker automatique sur hub.docker.com
+- Liste photos avec carte géolocaliastion
+- Afficher géolocalisation photo dans supervision
+- Supervision Web : prévisualisation photo
+- Supervision Web : thème bootstrap
+- Abandon mission depuis iOS
+- QR-Code + Retour visuel sur l'écran du pi
+- Amélioration interface iOS
+  - Le scan se fait maintenant sur la page d'accueil (l'ancien menu scan a été supprimé)
+  - Amélioration du design (home screen)
