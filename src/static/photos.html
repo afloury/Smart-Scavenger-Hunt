@@ -2,14 +2,89 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="libraries/jquery/js/jquery-3.2.1.min.js"></script>
+
     <style type="text/css">
+        .table_container {
+            position: relative;
+            width: 100%;
+        }
+
+        .nice_table {
+            position: relative;
+            width: 750px !important;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .darker_table {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        h2, h4 {
+            text-align: center;
+        }
+
+        .main_title {
+            margin-top: 150px;
+            margin-bottom: 25px;
+        }
     </style>
 </head>
 
 <body>
-    <pre id="star_wars"></pre>
+    <link href="libraries/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <h2 class="main_title">Liste des Photos</h2>
+
+    <div class="table_container">
+        <table id="table_list_pictures" class="table nice_table darker_table">
+            <thead>
+                <tr>
+                    <th>Picture uuid</th>
+                    <th>position</th>
+                    <th>winning_label</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+
+    <br/>
+    <section id="details_photos" class="hidden">
+        <h2 class="main_title">Détails Photos</h2>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <h4>Reconnaissance Google</h4>
+                    <table id="table_google_vision" class="table nice_table darker_table">
+                        <thead>
+                            <tr>
+                                <th>Objet</th>
+                                <th>Pourcentage</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <h4>Aperçu Photo</h4>
+                    <img src="" alt="" id="photo_preview">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="libraries/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         function parseURLParams(url) {
             var queryStart = url.indexOf("?") + 1,
@@ -32,63 +107,63 @@
         }
 
         $(function () {
+            var base_url = 'http://127.0.0.1:5003';
             var currentUrl = window.location.href;
             var urlParams = parseURLParams(currentUrl);
-            $.ajax({
-                //url: 'http://docker.nicnl.com:5003/team/'+urlParams+'/picture/',
-                url: 'http://docker.nicnl.com:5003/team/4fb08de6-7f69-4eed-bfa4-512b7a40402d/picture/',
-                method: 'GET',
-                error: function (data) {
-                    alert('ERREUR');
-                },
-                success: function (data) {
-                    var tr;
-                    var div;
-                    for (var i = 0; i < data.length; i++) {
-                        tr = $('<tr/>');
-                        tr.append("<td>" + data[i].picture_uuid + "</td>");
-                        div = $("<p></p>");
-                        div.append("<h3>Labels of image " + data[i].picture_uuid + "</h3>")
-                        div.append("<table id=\"tab" + i + "\">");
-                        //var tr2;
-                        for (var j = 0; j < data[i].labels.length; j++) {
-                            div.append('<tr/>');
-                            div.append("<td>" + data[i].labels[j].label + "</td>");
-                            div.append("<td>" + data[i].labels[j].score + "</td>");
-                            $('#tab' + i).append(div);
-                        }
-                        div.append("</table>");
-                        div.append("<br>");
-                        div.append("<br>");
-                        $('#diva').append(div);
-                        //tr.append("<td><a href=\"photos.html?uuid=" + data[i].uuid + "\">photos</a></td>");
-                        tr.append("<td>" + data[i].position['lat'] + "</td>");
-                        if (data[i].winning_label == null) {
-                            tr.append("<td>Photo not match</td>");
-                        } else {
-                            tr.append("<td>" + data[i].winning_label + "</td>");
-                        }
-                        $('#tabBase').append(tr);
-                    }
-                }
-            })
-        });
 
-        $(function () {
-            var currentUrl = window.location.href;
-            urlParams = parseURLParams(currentUrl);
-            $('#star_wars').text(urlParams['uuid']);
+            function append_picture_data(uuid, position, winning_label, labels) {
+                $('#table_list_pictures').find('tbody').append(
+                    $('<tr/>')
+                        .append($('<td/>').append(
+                            $('<a/>')
+                                .text(uuid)
+                                .click(function() {
+                                    var section = $('#details_photos').addClass('hidden');
+                                    var table = $('#table_google_vision').find('tbody').empty();
+
+                                    for (var i in labels) {
+                                        table.append(
+                                            $('<tr/>')
+                                                .append($('<td/>').text(labels[i].label))
+                                                .append($('<td/>').text(Math.round(labels[i].score * 100) + ' %'))
+                                        );
+                                    }
+
+                                    $('#photo_preview').attr('src', base_url + '/team/' + urlParams['uuid'] + '/picture/' + uuid + '/');
+
+                                    section.removeClass('hidden');
+                                })
+                            )
+                        )
+                        .append($('<td/>').text(position))
+                        .append($('<td/>').text(winning_label === null ? 'Photo not match' : winning_label))
+                );
+            }
+
+            function fetch_picture_data() {
+                $.ajax({
+                    url: base_url + '/team/' + urlParams['uuid'] + '/picture/',
+                    method: 'GET',
+                    success: function (data) {
+                        for (var i in data) {
+                            append_picture_data(
+                                data[i].picture_uuid,
+                                data[i].position['lat'] + ', ' + data[i].position['long'],
+                                data[i].winning_label,
+                                data[i].labels
+                            );
+                        }
+                    },
+                    error: function (data) {
+                        alert('ERREUR');
+                    }
+                });
+            }
+
+            fetch_picture_data();
+
         });
     </script>
-    <table id="tabBase">
-        <tr>
-            <th>Picture uuid</th>
-            <th>position</th>
-            <th>winning_label</th>
-
-        </tr>
-    </table>
-    <div id="diva"></div>
 </body>
 
 </html>

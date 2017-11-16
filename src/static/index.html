@@ -2,55 +2,82 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="libraries/jquery/js/jquery-3.2.1.min.js"></script>
+
     <style type="text/css">
+        #table_container {
+            position: relative;
+            width: 100%;
+        }
+
+        .nice_table {
+            position: relative;
+            width: 650px !important;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .darker_table {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .main_title {
+            margin-top: 150px;
+            margin-bottom: 25px;
+        }
     </style>
 </head>
 
 <body>
-    <pre id="star_wars"></pre>
+    <link href="libraries/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <h2 class="main_title">Liste des Équipes</h2>
+
+    <div class="table_container">
+        <table class="table darker_table nice_table" id="teams_table">
+            <tr>
+                <th>Team</th>
+                <th>Score</th>
+                <th>Photos</th>
+            </tr>
+        </table>
+    </div>
+
+
     <script type="text/javascript">
-
-        /*var json =
-            [
-                {
-                    "uuid": "d2bdc372-5efa-4dbd-b351-b4f402950221",
-                    "name": "team rouge", "score": -5
-                }, {
-                    "uuid": "017ffad3-d21d-4c8a-96aa-d562d7d12379",
-                    "name": "team verte", "score": 5
-                }
-            ];
-
-        JSON.stringify(json);*/
-
         $(function () {
             $.ajax({
-                url: 'http://docker.nicnl.com:5003/score/',
+                url: 'http://127.0.0.1:5003/score/',
                 method: 'GET',
                 error: function (data) {
                     alert('ERREUR');
                 },
                 success: function (data) {
                     for (var i = 0; i < data.length; i++) {
-                        tr = $('<tr/>');
-                        tr.append("<td>" + data[i].name + "</td>");
-                        tr.append("<td>" + data[i].score + "</td>");
-                        tr.append("<td><a href=\"photos.html?uuid=" + data[i].uuid + "\">photos</a></td>");
-                        $('table').append(tr);
+                        $('#teams_table').append(
+                            $('<tr/>')
+                                .append($('<td/>').text(data[i].name))
+                                .append($('<td/>').text(data[i].score))
+                                .append($('<td/>').append(
+                                    $('<a/>')
+                                        .attr('href', 'photos.html?uuid=' + data[i].uuid)
+                                        .text('photos')
+                                ))
+                        );
                     }
                 }
             })
         });
     </script>
-    <table>
-        <tr>
-            <th>Team</th>
-            <th>Score</th>
-            <th>Photos</th>
-        </tr>
-    </table>
 </body>
 
 </html>
