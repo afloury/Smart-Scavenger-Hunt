@@ -221,7 +221,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let metadataSplitted = raw_qr_code.split(separator: ":").map(String.init)
             let pointIdentifier = metadataSplitted[0]
             let lrID = metadataSplitted[1]
-            Alert.show(controller: self, message: actByLRID(regionId: pointIdentifier, lrID: lrID))
+            _ = actByLRID(regionId: pointIdentifier, lrID: lrID)
+            //Alert.show(controller: self, message: message)
         } else {
             Alert.show(controller: self, message: "Problem metadataOutput, QRCode detection")
         }
