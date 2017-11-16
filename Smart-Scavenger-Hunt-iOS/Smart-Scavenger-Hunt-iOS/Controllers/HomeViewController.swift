@@ -87,7 +87,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func sendPhoto(lrID: String) {
-        if let photoController = self.tabBarController?.viewControllers![2] as? PhotoViewController {
+        if let photoController = self.tabBarController?.viewControllers![1] as? PhotoViewController {
             photoController.sendPhoto(lrID: lrID)
         }
     }
