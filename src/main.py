@@ -128,7 +128,7 @@ def get_mission():
 
 
 @app.route('/mission/', methods=['DELETE'])
-def get_mission():
+def delete_mission():
     return routing_to_game('delete', '/mission/')
 
 
