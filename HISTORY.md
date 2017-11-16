@@ -139,8 +139,10 @@ ________
 - Afficher géolocalisation photo dans supervision
 - Supervision Web : prévisualisation photo
 - Supervision Web : thème bootstrap
-- Abandon mission depuis iOS
 - QR-Code + Retour visuel sur l'écran du pi
+- Abandon mission depuis iOS
+- Nettoyage du code Swift
 - Amélioration interface iOS
   - Le scan se fait maintenant sur la page d'accueil (l'ancien menu scan a été supprimé)
   - Amélioration du design (home screen)
+  - Amélioration UX (message explicite)
