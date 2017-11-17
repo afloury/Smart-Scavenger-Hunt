@@ -21,6 +21,9 @@ class RegisterTeamViewController: UIViewController {
                     Alert.show(controller: self, message: message!)
                 }
             })
+            if let home = self.view.superview as? HomeViewController {
+                home.displayInstructions()
+            }
             self.view.removeFromSuperview()
         } else {
             Alert.show(controller: self, message: "Nom d'équipe vide")

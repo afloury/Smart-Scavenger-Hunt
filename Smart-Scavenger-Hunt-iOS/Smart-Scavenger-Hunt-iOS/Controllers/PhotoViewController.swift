@@ -78,7 +78,7 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
     }
     
     func sendPhoto(lrID: String) {
-        guard let imageTaken = imageTake.image else {
+        guard let imageTaken = imageTake?.image else {
             Alert.show(controller: self, message: "Il faut prendre une photo avant de pouvoir l'envoyer.")
             return
         }
@@ -88,6 +88,7 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
             Alert.show(controller: self, message: response)
             // display instruction in home screen
             if let home = self.tabBarController?.viewControllers![0] as? HomeViewController {
+                home.hadMission = false
                 home.displayInstructions()
             }
         })
