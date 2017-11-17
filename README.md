@@ -38,6 +38,8 @@ Clone the master branch into a local folder, and launch the following command:
 
 ### Install iOS app on iPhone
 
+When you clone the iOS project, you have to use [CocoaPods](https://cocoapods.org/) to manage dependencies of the project
+
 - Open the project in Xcode
 - Connect your iPhone to your Mac
 - Select your device in the target list
