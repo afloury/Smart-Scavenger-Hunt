@@ -146,3 +146,14 @@ ________
   - Le scan se fait maintenant sur la page d'accueil (l'ancien menu scan a été supprimé)
   - Amélioration du design (home screen)
   - Amélioration UX (message explicite)
+  
+  
+    
+________
+
+## Jour 9 (2017-11-16)
+
+- Finalisation
+- Tests
+- Correction des derniers bugs
+- Démonstration formelle
