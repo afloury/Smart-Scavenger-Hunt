@@ -44,4 +44,5 @@ def gen_mission(nb):
 
 
 def remove_item(item):
-    things.remove(item)
+    if item in things:
+        things.remove(item)
