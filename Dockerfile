@@ -12,4 +12,18 @@ RUN mkdir /SmartScavengerHunt_game/pictures
 
 ENV TIMEOUT 30
 EXPOSE 80
-CMD ["python3", "-u", "main.py"]
+CMD [\
+    "gunicorn", \
+    "--pid", "gunicorn.pid", \
+\
+    "--bind", ":80", \
+    "--backlog", "2000", \
+\
+    "--workers", "8", \
+    "--worker-connections", "2000", \
+\
+    "--log-level", "debug", \
+    "--capture-output", \
+\
+    "main:app" \
+]
