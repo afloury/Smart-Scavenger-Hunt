@@ -45,6 +45,8 @@ When you clone the iOS project, you have to use [CocoaPods](https://cocoapods.or
 - Select your device in the target list
 - Launch the App
 
+You can also export the App with Xcode and install it on devices by using iTunes
+
 ### Configure iOS app (settings ip)
 
 When the app is installed, you have to go in the settings of the app and add the address of:
