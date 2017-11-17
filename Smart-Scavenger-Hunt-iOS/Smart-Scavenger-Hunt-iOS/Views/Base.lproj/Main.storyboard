@@ -294,15 +294,6 @@ to start a session go near to registration point</string>
                                 </state>
                                 <connections>
                                     <action selector="takePhoto:" destination="SU8-dp-bCn" eventType="touchUpInside" id="7ku-Ws-A5U"/>
-                                    <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PUY-jR-KaW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tX4-ik-NO3">
-                                <rect key="frame" x="164" y="502" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="sendImage:" destination="SU8-dp-bCn" eventType="touchUpInside" id="Wgi-nF-DTz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -331,57 +322,6 @@ to start a session go near to registration point</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SL9-Ae-gyn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1137" y="1042"/>
-        </scene>
-        <!--Scan-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ScanViewController" customModule="Smart_Scavenger_Hunt_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identifiant" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zc6-V6-S9Z">
-                                <rect key="frame" x="149.5" y="638" width="76.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYq-V9-Oeu">
-                                <rect key="frame" x="16" y="633" width="129.5" height="30"/>
-                                <state key="normal" title="Beacon"/>
-                                <connections>
-                                    <action selector="SearchBeacon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bOV-FL-WeG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7p-EA-gmj">
-                                <rect key="frame" x="234" y="633" width="129.5" height="30"/>
-                                <state key="normal" title="QR Code"/>
-                                <connections>
-                                    <action selector="searchQRCode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ECw-L2-uo3"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.80948514277188421" green="1" blue="0.79931686826306891" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="VYq-V9-Oeu" firstAttribute="centerY" secondItem="zc6-V6-S9Z" secondAttribute="centerY" id="71M-ze-Eqo"/>
-                            <constraint firstItem="zc6-V6-S9Z" firstAttribute="leading" secondItem="VYq-V9-Oeu" secondAttribute="trailing" constant="4" id="8VY-7F-ksJ"/>
-                            <constraint firstItem="Y7p-EA-gmj" firstAttribute="leading" secondItem="zc6-V6-S9Z" secondAttribute="trailing" constant="8" id="ABq-4U-nAa"/>
-                            <constraint firstItem="Y7p-EA-gmj" firstAttribute="centerY" secondItem="zc6-V6-S9Z" secondAttribute="centerY" id="XJC-DE-YA7"/>
-                            <constraint firstItem="zc6-V6-S9Z" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="fvR-Xu-1ft"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zc6-V6-S9Z" secondAttribute="bottom" constant="8" id="jMX-NQ-dVi"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Y7p-EA-gmj" secondAttribute="trailing" constant="11.5" id="ktL-Rv-p5E"/>
-                            <constraint firstItem="VYq-V9-Oeu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="mNR-0K-pkp"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Scan" image="qr-code-dark" selectedImage="qr-code" id="wTT-yc-xSF"/>
-                    <connections>
-                        <outlet property="messageLabel" destination="zc6-V6-S9Z" id="dNZ-Am-fix"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-316" y="631.93403298350825"/>
         </scene>
         <!--Register Team View Controller-->
         <scene sceneID="tZk-MP-jaP">
@@ -484,7 +424,5 @@ Register your team</string>
         <image name="house-dark" width="21" height="21"/>
         <image name="photo-camera" width="21" height="21"/>
         <image name="photo-camera-dark" width="21" height="21"/>
-        <image name="qr-code" width="21" height="21"/>
-        <image name="qr-code-dark" width="21" height="21"/>
     </resources>
 </document>
