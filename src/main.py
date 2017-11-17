@@ -104,7 +104,7 @@ def google_vision():
         }]
 
         for item in current_mission:
-            if label.score > 0.82 and item.lower() in label.description.lower():
+            if label.score > 0.45 and item.lower() in label.description.lower():
                 winning_label = label.description
 
                 # Todo: Après avoir réussi un item de la mission, remove ou reset ?
